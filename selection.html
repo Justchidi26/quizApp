@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Selection</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- section for user to select key items for quiz -->
+    <section class="user-input">
+      <form>
+        <div class="form-container">
+          <div class="form-box">
+            <label for="name">Enter a Name:</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              class="form-input"
+              autofocus
+              required
+            />
+          </div>
+
+          <div class="form-box">
+            <label>Choose Subject:</label>
+            <select name="subjects" id="subjects">
+              <option>English</option>
+              <option>Maths</option>
+              <option>Basic Science</option>
+            </select>
+          </div>
+
+          <div class="form-box">
+            <label for="noOfQuestions"
+              >Enter the number of questions you want (1 - 30):</label
+            >
+            <input
+              type="number"
+              value="5"
+              class="form-input"
+              id="noOfQuestions"
+              name="noOfQuestions"
+              min="1"
+              max="30"
+              required
+            />
+          </div>
+
+          <div class="form-box">
+            <label for="time">Time (minutes):</label>
+            <input
+              type="number"
+              value="10"
+              class="form-input"
+              id="time"
+              name="time"
+              readonly
+              min="0"
+            />
+          </div>
+          <div class="form-button">
+            <button type="submit">Continue</button>
+          </div>
+        </div>
+      </form>
+    </section>
+  </body>
+</html>
