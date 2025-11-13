@@ -8,17 +8,24 @@
   </head>
   <body>
     <!-- section for user to select key items for quiz -->
-    <section class="user-input" style="padding: 20px">
+    <section class="user-input">
       <form>
         <div class="form-container">
           <div class="form-box">
             <label for="name">Enter a Name:</label>
-            <input type="text" name="name" id="name" class="form-input" />
+            <input
+              type="text"
+              name="name"
+              id="name"
+              class="form-input"
+              autofocus
+              required
+            />
           </div>
 
           <div class="form-box">
-            <label>Choose Subjects:</label>
-            <select multiple name="subjects" id="subjects">
+            <label>Choose Subject:</label>
+            <select name="subjects" id="subjects">
               <option>English</option>
               <option>Maths</option>
               <option>Basic Science</option>
@@ -31,11 +38,26 @@
             >
             <input
               type="number"
+              value="5"
               class="form-input"
               id="noOfQuestions"
               name="noOfQuestions"
               min="1"
               max="30"
+              required
+            />
+          </div>
+
+          <div class="form-box">
+            <label for="time">Time (minutes):</label>
+            <input
+              type="number"
+              value="10"
+              class="form-input"
+              id="time"
+              name="time"
+              readonly
+              min="0"
             />
           </div>
           <div class="form-button">
@@ -171,5 +193,195 @@
     </section>
 
     <!-- section to show user summary report on exam -->
+    <section class="summary-content">
+      <div class="summary-header">
+        <div>
+          <h2>Quiz Details</h2>
+        </div>
+
+        <div class="summary-key">
+          <span>Key:</span>
+          <div>
+            <span>Correct &check;</span>
+            <span>Wrong &times;</span>
+
+            <span>Unaswered &propto;</span>
+          </div>
+        </div>
+      </div>
+      <div class="summary-content-container">
+        <!--  -->
+        <div class="summary-content-inner">
+          <div class="question-summary">
+            <div class="question-summary-no">
+              <span>1</span>
+            </div>
+
+            <div class="question-summary-details">
+              <div>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio,
+                atque rerum itaque repudiandae a perferendis tenetur velit
+                dolorum, vitae voluptatum saepe molestiae doloremque aliquid
+                temporibus ipsa perspiciatis suscipit incidunt dolorem placeat
+                ducimus omnis deleniti fugiat sit cupiditate. Id, sit reiciendis
+                molestias delectus repellendus perferendis ratione accusantium
+                dignissimos quia aliquam eum.
+              </div>
+              <div>
+                <table>
+                  <tr>
+                    <td>You Answered</td>
+                    <td>
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                      Deserunt, hic.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Correct Answer</td>
+                    <td>
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                      Deserunt, hic.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Mark Gotten</td>
+                    <td>4</td>
+                  </tr>
+                  <tr>
+                    <td>Difficulty</td>
+                    <td>Hard</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <div class="question-summary-indicator correct">&check;</div>
+          </div>
+          <div class="question-summary">
+            <div class="question-summary-no">
+              <span>2</span>
+            </div>
+
+            <div class="question-summary-details">
+              <div>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio,
+                atque rerum itaque repudiandae a perferendis tenetur velit
+                dolorum, vitae voluptatum saepe molestiae doloremque aliquid
+                temporibus ipsa perspiciatis suscipit incidunt dolorem placeat
+                ducimus omnis deleniti fugiat sit cupiditate. Id, sit reiciendis
+                molestias delectus repellendus perferendis ratione accusantium
+                dignissimos quia aliquam eum.
+              </div>
+              <div>
+                <table>
+                  <tr>
+                    <td>You Answered</td>
+                    <td>
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                      Deserunt, hic.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Correct Answer</td>
+                    <td>
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                      Deserunt, hic.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Mark Gotten</td>
+                    <td>4</td>
+                  </tr>
+                  <tr>
+                    <td>Difficulty</td>
+                    <td>Hard</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="question-summary-indicator wrong">&times;</div>
+          </div>
+          <div class="question-summary">
+            <div class="question-summary-no">
+              <span>3</span>
+            </div>
+
+            <div class="question-summary-details">
+              <div>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio,
+                atque rerum itaque repudiandae a perferendis tenetur velit
+                dolorum, vitae voluptatum saepe molestiae doloremque aliquid
+                temporibus ipsa perspiciatis suscipit incidunt dolorem placeat
+                ducimus omnis deleniti fugiat sit cupiditate. Id, sit reiciendis
+                molestias delectus repellendus perferendis ratione accusantium
+                dignissimos quia aliquam eum.
+              </div>
+              <div>
+                <table>
+                  <tr>
+                    <td>You Answered</td>
+                    <td>
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                      Deserunt, hic.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Correct Answer</td>
+                    <td>
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                      Deserunt, hic.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Mark Gotten</td>
+                    <td>4</td>
+                  </tr>
+                  <tr>
+                    <td>Difficulty</td>
+                    <td>Hard</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="question-summary-indicator unanswered">&propto;</div>
+          </div>
+        </div>
+
+        <!-- summary details -->
+        <div class="summary-details">
+          <div class="summary-details-card">
+            <h3>Quiz Overview</h3>
+            <div>
+              <table>
+                <tr>
+                  <td>Total Questions</td>
+                  <td>5</td>
+                </tr>
+                <tr>
+                  <td>Total Questions Attempted</td>
+                  <td>5</td>
+                </tr>
+                <tr>
+                  <td>Total Questions Unanswered</td>
+                  <td>5</td>
+                </tr>
+                <tr>
+                  <td>Total Correct Answers</td>
+                  <td>5</td>
+                </tr>
+                <tr>
+                  <td>Total InCorrect Answers</td>
+                  <td>5</td>
+                </tr>
+                <tr>
+                  <td>Total Score</td>
+                  <td>5</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
