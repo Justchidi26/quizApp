@@ -230,7 +230,7 @@ section {
   border: 1px solid #181b33;
 }
 
-.form-container .form-button {
+.form-container #form-button {
   display: flex;
   align-items: center;
   justify-content: center;
