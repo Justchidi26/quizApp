@@ -3,7 +3,9 @@ let answersA
 let answersB
 let answersC
 let answersD
+const indexStartingPoint = 3;
 
+// Subject choices
 if ( localStorage.subjects == "English")
 {
     document.getElementById("subject").innerHTML = "English Studies";
@@ -211,16 +213,18 @@ else
 
 }
 
-let qOne = document.getElementsByClassName("option-number")[4];
-let qTwo = document.getElementsByClassName("option-number")[5];
-let qThree = document.getElementsByClassName("option-number")[6];
-let qFour = document.getElementsByClassName("option-number")[7];
-let qFive = document.getElementsByClassName("option-number")[8];
-let qSix = document.getElementsByClassName("option-number")[9]
-let qSeven = document.getElementsByClassName("option-number")[10];
-let qEight = document.getElementsByClassName("option-number")[11];
-let qNine = document.getElementsByClassName("option-number")[12];
-let qTen = document.getElementsByClassName("option-number")[13];
+/*Variables (Question Number buttons, Space for Question, Space for Options, 
+                space for Question number,  Space for Question number over total questions, Navigation buttons )*/
+let qOne = document.getElementsByClassName("option-number")[indexStartingPoint + 1];
+let qTwo = document.getElementsByClassName("option-number")[indexStartingPoint + 2];
+let qThree = document.getElementsByClassName("option-number")[indexStartingPoint + 3];
+let qFour = document.getElementsByClassName("option-number")[indexStartingPoint + 4];
+let qFive = document.getElementsByClassName("option-number")[indexStartingPoint + 5];
+let qSix = document.getElementsByClassName("option-number")[indexStartingPoint + 6]
+let qSeven = document.getElementsByClassName("option-number")[indexStartingPoint + 7];
+let qEight = document.getElementsByClassName("option-number")[indexStartingPoint + 8];
+let qNine = document.getElementsByClassName("option-number")[indexStartingPoint + 9];
+let qTen = document.getElementsByClassName("option-number")[indexStartingPoint + 10];
 
 let mainQuestion = document.getElementById("main-question");
 
@@ -231,6 +235,12 @@ let optionD = document.getElementsByClassName("option-text")[3];
 
 let questionNum = document.getElementById("questionNum");
 
+let questionOutOfNum = document.getElementById("questionOutOfNum");
+
+let previousButton = document.getElementById("previous");
+let nextButton = document.getElementById("next");
+
+// Function that puts the right question for each number
 function change(questionNumber){
     let index = questionNumber - 1
     mainQuestion.innerHTML = questions[index];
@@ -239,12 +249,17 @@ function change(questionNumber){
     optionC.innerHTML = "<h3>"+ answersC[index] +"</h3>";
     optionD.innerHTML = "<h3>"+ answersD[index] +"</h3>";
 
-    questionNum.innerHTML = "Question " + questionNumber;
+    questionNum.innerHTML = "Question " +  questionNumber;
+    questionOutOfNum.innerHTML = "Question " + questionNumber + "/10"
 }
 
+// Loads the first question
+document.addEventListener("DOMContentLoaded", function(){
+    change(1);
+}
+);
 
-
-
+// Allows movement by clicking numbers
 qOne.addEventListener("click", function(){
     this.classList.add("current");
 
@@ -403,3 +418,48 @@ qTen.addEventListener("click", function(){
     
     change(10);
 });
+
+// Movement by Previous and Next
+previousButton.addEventListener("click", function(){
+    function previousQuestion(questionButton, number)
+    {
+        if (questionButton.classList.contains("current"))
+        {
+            change(number-1);
+            questionButton.classList.remove("current");
+            document.getElementsByClassName("option-number")[(indexStartingPoint + number) - 1].classList.add("current");
+        }
+    }
+    
+    previousQuestion(qTwo, 2);
+    previousQuestion(qThree, 3);
+    previousQuestion(qFour, 4);
+    previousQuestion(qFive, 5);
+    previousQuestion(qSix, 6);
+    previousQuestion(qSeven, 7);
+    previousQuestion(qEight, 8);
+    previousQuestion(qNine, 9);
+    previousQuestion(qTen, 10);
+})
+
+nextButton.addEventListener("click", function(){
+    function nextQuestion(questionButtonN, numberN)
+    {
+        if (questionButtonN.classList.contains("current"))
+        {
+            change(numberN + 1);
+            questionButtonN.classList.remove("current");
+            document.getElementsByClassName("option-number")[indexStartingPoint + numberN + 1].classList.add("current");
+        }
+    }
+
+    nextQuestion(qNine, 9);
+    nextQuestion(qEight, 8);
+    nextQuestion(qSeven, 7);
+    nextQuestion(qSix, 6);
+    nextQuestion(qFive, 5);
+    nextQuestion(qFour, 4);
+    nextQuestion(qThree, 3);
+    nextQuestion(qTwo, 2);
+    nextQuestion(qOne, 1);   
+})
