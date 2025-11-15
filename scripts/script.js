@@ -1,8 +1,9 @@
-let questions
-let answersA
-let answersB
-let answersC
-let answersD
+let questions;
+let answersA;
+let answersB;
+let answersC;
+let answersD;
+let optionChoices = [];
 const indexStartingPoint = 3;
 
 // Subject choices
@@ -213,7 +214,7 @@ else
 
 }
 
-/*Variables (Question Number buttons, Space for Question, Space for Options, 
+/*Variables (Question Number buttons, Space for Question, Space for Options, Option Buttons,
                 space for Question number,  Space for Question number over total questions, Navigation buttons )*/
 let qOne = document.getElementsByClassName("option-number")[indexStartingPoint + 1];
 let qTwo = document.getElementsByClassName("option-number")[indexStartingPoint + 2];
@@ -233,6 +234,11 @@ let optionB = document.getElementsByClassName("option-text")[1];
 let optionC = document.getElementsByClassName("option-text")[2];
 let optionD = document.getElementsByClassName("option-text")[3];
 
+let optionAButton = document.getElementsByClassName("option-box")[0];
+let optionBButton = document.getElementsByClassName("option-box")[1];
+let optionCButton = document.getElementsByClassName("option-box")[2];
+let optionDButton = document.getElementsByClassName("option-box")[3];
+
 let questionNum = document.getElementById("questionNum");
 
 let questionOutOfNum = document.getElementById("questionOutOfNum");
@@ -240,7 +246,7 @@ let questionOutOfNum = document.getElementById("questionOutOfNum");
 let previousButton = document.getElementById("previous");
 let nextButton = document.getElementById("next");
 
-// Function that puts the right question for each number
+// Function that puts the right question, options and previous option choice for each number
 function change(questionNumber){
     let index = questionNumber - 1
     mainQuestion.innerHTML = questions[index];
@@ -251,6 +257,42 @@ function change(questionNumber){
 
     questionNum.innerHTML = "Question " +  questionNumber;
     questionOutOfNum.innerHTML = "Question " + questionNumber + "/10"
+
+    if(optionChoices[index] === "A")
+    {
+        optionAButton.classList.add("selected");
+        optionBButton.classList.remove("selected");
+        optionCButton.classList.remove("selected");
+        optionDButton.classList.remove("selected");
+    }
+    else if(optionChoices[index] === "B")
+    {
+        optionBButton.classList.add("selected");
+        optionAButton.classList.remove("selected");
+        optionCButton.classList.remove("selected");
+        optionDButton.classList.remove("selected");
+    }
+    else if(optionChoices[index] === "C")
+    {
+        optionCButton.classList.add("selected");
+        optionBButton.classList.remove("selected");
+        optionAButton.classList.remove("selected");
+        optionDButton.classList.remove("selected");
+    }
+    else if(optionChoices[index] === "D")
+    {
+        optionDButton.classList.add("selected");
+        optionBButton.classList.remove("selected");
+        optionCButton.classList.remove("selected");
+        optionAButton.classList.remove("selected");
+    }
+    else 
+    {
+        optionAButton.classList.remove("selected");
+        optionBButton.classList.remove("selected");
+        optionCButton.classList.remove("selected");
+        optionDButton.classList.remove("selected");
+    }
 }
 
 // Loads the first question
@@ -463,3 +505,111 @@ nextButton.addEventListener("click", function(){
     nextQuestion(qTwo, 2);
     nextQuestion(qOne, 1);   
 })
+
+// Selection of Options 
+optionAButton.addEventListener("click", function (){
+    optionAButton.classList.add("selected");
+    optionBButton.classList.remove("selected");
+    optionCButton.classList.remove("selected");
+    optionDButton.classList.remove("selected");
+
+    function optionChosen(questionNum, number)
+    {
+        if (questionNum.classList.contains("current")) {
+            optionChoices[number - 1] = "A"
+            questionNum.classList.add("answered");
+        }
+        
+    }
+
+    optionChosen(qOne, 1);
+    optionChosen(qTwo, 2);
+    optionChosen(qThree, 3);
+    optionChosen(qFour, 4);
+    optionChosen(qFive, 5);
+    optionChosen(qSix, 6);
+    optionChosen(qSeven, 7);
+    optionChosen(qEight, 8);
+    optionChosen(qNine, 9);
+    optionChosen(qTen, 10);
+});
+
+optionBButton.addEventListener("click", function (){
+    optionBButton.classList.add("selected");
+    optionAButton.classList.remove("selected");
+    optionCButton.classList.remove("selected");
+    optionDButton.classList.remove("selected");
+
+    function optionChosen(questionNum, number)
+    {
+        if (questionNum.classList.contains("current")) {
+            optionChoices[number - 1] = "B"
+            questionNum.classList.add("answered");
+        }
+    }
+
+    optionChosen(qOne, 1);
+    optionChosen(qTwo, 2);
+    optionChosen(qThree, 3);
+    optionChosen(qFour, 4);
+    optionChosen(qFive, 5);
+    optionChosen(qSix, 6);
+    optionChosen(qSeven, 7);
+    optionChosen(qEight, 8);
+    optionChosen(qNine, 9);
+    optionChosen(qTen, 10);
+});
+
+optionCButton.addEventListener("click", function (){
+    optionCButton.classList.add("selected");
+    optionBButton.classList.remove("selected");
+    optionAButton.classList.remove("selected");
+    optionDButton.classList.remove("selected");
+
+    function optionChosen(questionNum, number)
+    {
+        if (questionNum.classList.contains("current")) {
+            optionChoices[number - 1] = "C";
+            questionNum.classList.add("answered");
+        }
+    }
+
+    optionChosen(qOne, 1);
+    optionChosen(qTwo, 2);
+    optionChosen(qThree, 3);
+    optionChosen(qFour, 4);
+    optionChosen(qFive, 5);
+    optionChosen(qSix, 6);
+    optionChosen(qSeven, 7);
+    optionChosen(qEight, 8);
+    optionChosen(qNine, 9);
+    optionChosen(qTen, 10);
+});
+
+optionDButton.addEventListener("click", function (){
+    optionDButton.classList.add("selected");
+    optionBButton.classList.remove("selected");
+    optionCButton.classList.remove("selected");
+    optionAButton.classList.remove("selected");
+
+    function optionChosen(questionNum, number)
+    {
+        if (questionNum.classList.contains("current")) {
+            optionChoices[number - 1] = "D"
+            questionNum.classList.add("answered");
+        }
+    }
+
+    optionChosen(qOne, 1);
+    optionChosen(qTwo, 2);
+    optionChosen(qThree, 3);
+    optionChosen(qFour, 4);
+    optionChosen(qFive, 5);
+    optionChosen(qSix, 6);
+    optionChosen(qSeven, 7);
+    optionChosen(qEight, 8);
+    optionChosen(qNine, 9);
+    optionChosen(qTen, 10);
+});
+
+
