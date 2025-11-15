@@ -198,8 +198,8 @@ section {
 .form-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  max-width: 800px;
+  gap: 39px;
+  max-width: 200%;
   margin: 0 auto;
   padding: 20px;
   border-radius: 15px;
@@ -213,16 +213,17 @@ section {
 }
 
 .form-container .form-box input {
-  height: 25px;
+  height: 30px;
   border: 1px solid #181b33;
   outline: none !important;
   border-radius: 5px;
-  padding: 5px;
+  padding: 7px;
+  width: 250px;
 }
 
 .form-container .form-box select {
   outline: none !important;
-  height: 25px;
+  height: 45px;
 }
 
 .form-container .form-box input:active,
