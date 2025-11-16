@@ -143,4 +143,4 @@ function corrections (questionNumber)
     }
 
 
-localStorage.clear;
+    localStorage.clear();

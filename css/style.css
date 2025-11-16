@@ -360,3 +360,9 @@ section {
   align-items: center;
   gap: 10px;
 }
+
+#another {
+  width: 100%;
+  font-size: 20px;
+  margin: 10px;
+}
