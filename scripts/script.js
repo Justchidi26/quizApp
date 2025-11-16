@@ -4,6 +4,9 @@ let answersB;
 let answersC;
 let answersD;
 let optionChoices = [];
+let correctAnswers;
+let totalScore = 0;
+let totalUnanswered = 0;
 const indexStartingPoint = 3;
 
 // Subject choices
@@ -75,6 +78,18 @@ if ( localStorage.subjects == "English")
         "34443DZZ"
     ]
 
+    correctAnswers = [
+        "A",
+        "B",
+        "C",
+        "D",
+        "A",
+        "B",
+        "C",
+        "D",
+        "A",
+        "B"
+    ]
 }   
 else if ( localStorage.subjects == "Basic Science")
 {
@@ -144,6 +159,18 @@ else if ( localStorage.subjects == "Basic Science")
         "34443DZZ"
     ]
 
+    correctAnswers = [
+        "A",
+        "B",
+        "C",
+        "D",
+        "A",
+        "B",
+        "C",
+        "D",
+        "A",
+        "B"
+    ]
 }
 else 
 {
@@ -212,6 +239,19 @@ else
         "34443DZZ"
     ]
 
+
+    correctAnswers = [
+        "A",
+        "B",
+        "C",
+        "D",
+        "A",
+        "B",
+        "C",
+        "D",
+        "A",
+        "B"
+    ]
 }
 
 /*Variables (Question Number buttons, Space for Question, Space for Options, Option Buttons,
@@ -611,5 +651,22 @@ optionDButton.addEventListener("click", function (){
     optionChosen(qNine, 9);
     optionChosen(qTen, 10);
 });
+
+//Scoring  (Saves total score as "score" in local storage and unanswered questions as "unanswered" for use in summary tab tab)
+document.getElementById("question-nav-button").addEventListener("click", function ()
+{
+    for (let answer in correctAnswers)
+    {
+        if(correctAnswers[answer] === optionChoices[answer])
+            totalScore ++;
+        else if (optionChoices[answer] === undefined)
+            totalUnanswered ++;
+    }
+
+    localStorage.setItem("unanswered", totalUnanswered); 
+    localStorage.setItem("score", totalScore); 
+
+    window.location.href= "summary.html";
+})
 
 
