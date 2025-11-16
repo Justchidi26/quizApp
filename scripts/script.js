@@ -1,93 +1,93 @@
-let questions;
-let answersA;
-let answersB;
-let answersC;
-let answersD;
-let optionChoices = [];
-let correctAnswers;
-let totalScore = 0;
-let totalUnanswered = 0;
+let questions; // Stores questions
+let answersA; // All answers in option A
+let answersB; // All answers in option B
+let answersC; // All answers in option C
+let answersD; // All answers in option D
+let optionChoices = []; // stores user's answers
+let correctAnswers; // Stores correct answers for marking
+let totalScore = 0; 
+let totalUnanswered = 0; //stores number of unattempted questions
 let time = 600; // 10 minutes
-const indexStartingPoint = 3;
+const indexStartingPoint = 3; 
 
-// Subject choices
+// Subject choices thast influence the variables 
 if ( localStorage.subjects == "English")
 {
     document.getElementById("subject").innerHTML = "English Studies";
     questions = [
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit.Quisquam officia iste vel, nemo recusandae ab quia quisconsequuntur animi corrupti exercitationem quod veniam inlaboriosam sunt praesentium at molestiae mollitia vero ipsa? Vel soluta aspernatur repellendus saepe officia libero. Natu eaque dicta deserunt aperiam molestiae adipisci consecteturipsum. Illum ducimus ipsa officia accusantium! Vitae, cumquecorporis. At enim consequatur odit.",
-        "ft ydydyt dytdzuf ukuyg ug8yufudyt  yigigiyf ugiugi gigyt giukiug78tgiyjgfuy  uygugugu  uygugugiugig yguigiu ugu",
-        "okpomi  ggyufu  fytyftyf7y ytf7iyfiufy i uyfuyf7 yuf uyguyuguhg ufuyf uy y uyguygugug uguy uygu ugu guygug uguyh",
-        "Jhg uytvyc gf gftgcytchc  utfufyuguuiyg yfuyfuyf uyfug uff uyfiuyguguygyuu uguygyugyuggyugyg uy yu gygyugyuuy g ",
-        "jhjhvvg vuuttuvu uvyuuggvu yuyuuuyv f yffytfyt ytfyf ytfytfyfyy fytdesdrtdd dtrdudyudytd rts  dyrtd uydtrtdytdyt",
-        "ft ydydyt dytdzuf ukuyg ug8yufudyt  yigigiyf ugiugi gigyt giukiug78tgiyjgfuy  uygugugu  uygugugiugig yguigiu ugu",
-        "okpomi  ggyufu  fytyftyf7y ytf7iyfiufy i uyfuyf7 yuf uyguyuguhg ufuyf uy y uyguygugug uguy uygu ugu guygug uguyh",
-        "Jhg uytvyc gf gftgcytchc  utfufyuguuiyg yfuyfuyf uyfug uff uyfiuyguguygyuu uguygyugyuggyugyg uy yu gygyugyuuy g ",
-        "jhjhvvg vuuttuvu uvyuuggvu yuyuuuyv f yffytfyt ytfyf ytfytfyfyy fytdesdrtdd dtrdudyudytd rts  dyrtd uydtrtdytdyt",
-        "ft ydydyt dytdzuf ukuyg ug8yufudyt  yigigiyf ugiugi gigyt giukiug78tgiyjgfuy  uygugugu  uygugugiugig yguigiu ugu"
+        "Which of the following words is a noun?",
+        "Choose the correct past tense of the verb 'go'",
+        "Which word is the antonym (opposite) of 'happy'?",
+        "Identify the adjective in this sentence: 'The tall girl won the race.'",
+        "Which word is a synonym (similar meaning) for 'big'?",
+        "What is the correct plural form of 'child'?",
+        "Choose the correct preposition to complete the sentence: 'The cat is hiding ___ the table.'",
+        "Which punctuation mark should be used at the end of this sentence: 'What is your name'",
+        "Choose the correct word to complete the sentence: '___ are my best friends.'",
+        "Which sentence has the correct subject-verb agreement?"
     ]
 
     answersA = [
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit.Necessitatibus, commodi? Eaque tempore atque ea odit!",
-        "4783686934",
-        "dSTYAGG78",
-        "usdggfigs",
-        "wveyvytarv",
-        "2656345",
-        "4783686934",
-        "dSTYAGG78",
-        "usdggfigs",
-        "wveyvytarv"
+        "run",
+        "goed",
+        "joyful",
+        "girl",
+        "small",
+        "childs",
+        "on",
+        ".(period)",
+        "They",
+        "The dogs barks loudly."
     ]
 
     answersB = [
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit.Necessitatibus, commodi? Eaque tempore atque ea odit!",
-        "riisoiwr",
-        "Fiusdfiuf",
-        "5894859",
-        "46567345763",
-        "87efeuio",
-        "riisoiwr",
-        "Fiusdfiuf",
-        "5894859",
-        "46567345763"
+        "happy",
+        "gone",
+        "sad",
+        "won",
+        "large",
+        "childes",
+        "at",
+        ",(comma)",
+        "Them",
+        "The dog barks loudly."
     ]
 
     answersC= [
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit.Necessitatibus, commodi? Eaque tempore atque ea odit!",
-        "fhiausdi",
-        "3736264",
-        "4364644",
-        "fhsjgt67e",
-        "dgiuai",
-        "fhiausdi",
-        "3736264",
-        "4364644",
-        "fhsjgt67e"
+        "book",
+        "went",
+        "glad",
+        "race",
+        "tiny",
+        "children",
+        "under",
+        "? (question mark)",
+        "Their",
+        "The dog bark loudly."
     ]
 
     answersD = [
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit.Necessitatibus, commodi? Eaque tempore atque ea odit!",
-        "EWUY78363",
-        "8385824",
-        "1E3W1333",
-        "34443DZZ",
-        "2366BBVB",
-        "EWUY78363",
-        "8385824",
-        "1E3W1333",
-        "34443DZZ"
+        "quickly",
+        "going",
+        "lucky",
+        "tall",
+        "soft",
+        "child",
+        "with",
+        "! (exclamation mark)",
+        "Him",
+        "The dogs barked loudly."
     ]
 
     correctAnswers = [
-        "A",
+        "C",
+        "C",
+        "B",
+        "D",
         "B",
         "C",
-        "D",
-        "A",
-        "B",
         "C",
-        "D",
+        "C",
         "A",
         "B"
     ]
@@ -95,163 +95,164 @@ if ( localStorage.subjects == "English")
 else if ( localStorage.subjects == "Basic Science")
 {
     document.getElementById("subject").innerHTML = "Basic Science";
+
     questions = [
-    "Lorem scientist scienscular or sit amet consectetur adipisicing elit.Quisquam officia iste vel, nemo recusandae ab quia quisconsequuntur animi corrupti exercitationem quod veniam inlaboriosam sunt praesentium at molestiae mollitia vero ipsa? Vel soluta aspernatur repellendus saepe officia libero. Natu eaque dicta deserunt aperiam molestiae adipisci consecteturipsum. Illum ducimus ipsa officia accusantium! Vitae, cumquecorporis. At enim consequatur odit.",
-    "ft ydydyt dytdzuf ukuyg ug8yufudyt  yigigiyf ugiugi gigyt giukiug78tgiyjgfuy  uygugugu  uygugugiugig yguigiu ugu",
-    "okpomi  ggyufu  fytyftyf7y ytf7iyfiufy i uyfuyf7 yuf uyguyuguhg ufuyf uy y uyguygugug uguy uygu ugu guygug uguyh",
-    "Jhg uytvyc gf gftgcytchc  utfufyuguuiyg yfuyfuyf uyfug uff uyfiuyguguygyuu uguygyugyuggyugyg uy yu gygyugyuuy g ",
-    "jhjhvvg vuuttuvu uvyuuggvu yuyuuuyv f yffytfyt ytfyf ytfytfyfyy fytdesdrtdd dtrdudyudytd rts  dyrtd uydtrtdytdyt",
-    "ft ydydyt dytdzuf ukuyg ug8yufudyt  yigigiyf ugiugi gigyt giukiug78tgiyjgfuy  uygugugu  uygugugiugig yguigiu ugu",
-    "okpomi  ggyufu  fytyftyf7y ytf7iyfiufy i uyfuyf7 yuf uyguyuguhg ufuyf uy y uyguygugug uguy uygu ugu guygug uguyh",
-    "Jhg uytvyc gf gftgcytchc  utfufyuguuiyg yfuyfuyf uyfug uff uyfiuyguguygyuu uguygyugyuggyugyg uy yu gygyugyuuy g ",
-    "jhjhvvg vuuttuvu uvyuuggvu yuyuuuyv f yffytfyt ytfyf ytfytfyfyy fytdesdrtdd dtrdudyudytd rts  dyrtd uydtrtdytdyt",
-    "ft ydydyt einstein issac zuf ukuyg ug8yufudyt  yigigiyf ugiugi gigyt giukiug78tgiyjgfuy  uygugugu  uygugugiugig yguigiu ugu"
+        "What part of a plant absorbs water and nutrients from the soil?",
+        "Which planet is known as the 'Red Planet'?",
+        "What is the chemical symbol for water?",
+        "What force pulls objects toward the center of the Earth?",
+        "How many legs does a spider have?",
+        "What is the largest organ in the human body?",
+        "What gas do plants release during photosynthesis?",
+        "What state of matter is steam?",
+        "What is the center of our Solar System?",
+        "What type of animal is a frog?"
     ]
 
     answersA = [
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit.Necessitatibus, commodi? Eaque tempore atque ea odit!",
-        "4783686934",
-        "dSTYAGG78",
-        "usdggfigs",
-        "wveyvytarv",
-        "2656345",
-        "4783686934",
-        "dSTYAGG78",
-        "usdggfigs",
-        "wveyvytarv"
+        "Leaf",
+        "Earth",
+        "O2",
+        "Magnetism",
+        "6",
+        "Heart",
+        "Nitrogen",
+        "Solid",
+        "The Moon",
+        "Mammal"
     ]
 
     answersB = [
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit.Necessitatibus, commodi? Eaque tempore atque ea odit!",
-        "riisoiwr",
-        "Fiusdfiuf",
-        "5894859",
-        "46567345763",
-        "87efeuio",
-        "riisoiwr",
-        "Fiusdfiuf",
-        "5894859",
-        "46567345763"
+        "Stem",
+        "Mars",
+        "H2O",
+        "Friction",
+        "8",
+        "Liver",
+        "Oxygen",
+        "Liquid",
+        "The Sun",
+        "Reptile"
     ]
 
     answersC= [
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit.Necessitatibus, commodi? Eaque tempore atque ea odit!",
-        "fhiausdi",
-        "3736264",
-        "4364644",
-        "fhsjgt67e",
-        "dgiuai",
-        "fhiausdi",
-        "3736264",
-        "4364644",
-        "fhsjgt67e"
+        "Flower",
+        "Jupiter",
+        "CO2",
+        "Gravity",
+        "10",
+        "Skin",
+        "Carbon Dioxide",
+        "Gas",
+        "Mars",
+        "Amphibian"
     ]
 
     answersD = [
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit.Necessitatibus, commodi? Eaque tempore atque ea odit!",
-        "EWUY78363",
-        "8385824",
-        "1E3W1333",
-        "34443DZZ",
-        "2366BBVB",
-        "EWUY78363",
-        "8385824",
-        "1E3W1333",
-        "34443DZZ"
+        "Root",
+        "Venus",
+        "NaCl",
+        "Tension",
+        "4",
+        "Brain",
+        "Hydrogen",
+        "Plasma",
+        "A Comet",
+        "Fish"
     ]
 
     correctAnswers = [
-        "A",
+        "D",
+        "B",
         "B",
         "C",
-        "D",
-        "A",
         "B",
         "C",
-        "D",
-        "A",
-        "B"
+        "B",
+        "C",
+        "B",
+        "C"
     ]
 }
 else 
 {
     questions = [
-    "Lorem ipsum dolor sit mathematics mathsis adipisicing elit.Quisquam officia iste vel, nemo recusandae ab quia quisconsequuntur animi corrupti exercitationem quod veniam inlaboriosam sunt praesentium at molestiae mollitia vero ipsa? Vel soluta aspernatur repellendus saepe officia libero. Natu eaque dicta deserunt aperiam molestiae adipisci consecteturipsum. Illum ducimus ipsa officia accusantium! Vitae, cumquecorporis. At enim consequatur odit.",
-    "ft ydydyt dytdzuf ukuyg ug8yufudyt  yigigiyf ugiugi gigyt giukiug78tgiyjgfuy  uygugugu  uygugugiugig yguigiu ugu",
-    "okpomi  ggyufu  fytyftyf7y ytf7iyfiufy i uyfuyf7 yuf uyguyuguhg ufuyf uy y uyguygugug uguy uygu ugu guygug uguyh",
-    "Jhg uytvyc gf gftgcytchc  utfufyuguuiyg yfuyfuyf uyfug uff uyfiuyguguygyuu uguygyugyuggyugyg uy yu gygyugyuuy g ",
-    "jhjhvvg vuuttuvu uvyuuggvu yuyuuuyv f yffytfyt ytfyf ytfytfyfyy fytdesdrtdd dtrdudyudytd rts  dyrtd uydtrtdytdyt",
-    "ft ydydyt dytdzuf ukuyg ug8yufudyt  yigigiyf ugiugi gigyt giukiug78tgiyjgfuy  uygugugu  uygugugiugig yguigiu ugu",
-    "okpomi  ggyufu  fytyftyf7y ytf7iyfiufy i uyfuyf7 yuf uyguyuguhg ufuyf uy y uyguygugug uguy uygu ugu guygug uguyh",
-    "Jhg uytvyc gf gftgcytchc  utfufyuguuiyg yfuyfuyf uyfug uff uyfiuyguguygyuu uguygyugyuggyugyg uy yu gygyugyuuy g ",
-    "jhjhvvg vuuttuvu uvyuuggvu yuyuuuyv f yffytfyt ytfyf ytfytfyfyy fytdesdrtdd dtrdudyudytd rts  dyrtd uydtrtdytdyt",
-    "ft ydydyt dytdzuf ugraphical  functional yufudyt  yigigiyf ugiugi gigyt giukiug78tgiyjgfuy  uygugugu  uygugugiugig yguigiu ugu"
+        "What is 12 + 8?",
+        "What is 25 - 9?",
+        "What is 7 x 6?",
+        "What is 36 / 4?",
+        "How many sides does a triangle have?",
+        "How many sides does a square have?",
+        "Which of these numbers is an even number?",
+        "How many minutes are in one hour?",
+        "What is 1/2 (one-half) of 20?",
+        "If x + 5 = 10, what is x?"
     ]
 
     answersA = [
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit.Necessitatibus, commodi? Eaque tempore atque ea odit!",
-        "4783686934",
-        "dSTYAGG78",
-        "usdggfigs",
-        "wveyvytarv",
-        "2656345",
-        "4783686934",
-        "dSTYAGG78",
-        "usdggfigs",
-        "wveyvytarv"
+        "18",
+        "14",
+        "40",
+        "8",
+        "2",
+        "3",
+        "7",
+        "30",
+        "5",
+        "3"
     ]
 
     answersB = [
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit.Necessitatibus, commodi? Eaque tempore atque ea odit!",
-        "riisoiwr",
-        "Fiusdfiuf",
-        "5894859",
-        "46567345763",
-        "87efeuio",
-        "riisoiwr",
-        "Fiusdfiuf",
-        "5894859",
-        "46567345763"
+        "19",
+        "15",
+        "42",
+        "9",
+        "3",
+        "4",
+        "9",
+        "60",
+        "10",
+        "4"
     ]
 
     answersC= [
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit.Necessitatibus, commodi? Eaque tempore atque ea odit!",
-        "fhiausdi",
-        "3736264",
-        "4364644",
-        "fhsjgt67e",
-        "dgiuai",
-        "fhiausdi",
-        "3736264",
-        "4364644",
-        "fhsjgt67e"
+        "20",
+        "16",
+        "48",
+        "10",
+        "4",
+        "5",
+        "11",
+        "90",
+        "15",
+        "5"
     ]
 
     answersD = [
-        "Lorem ipsum dolor sit amet consectetur, adipisicing elit.Necessitatibus, commodi? Eaque tempore atque ea odit!",
-        "EWUY78363",
-        "8385824",
-        "1E3W1333",
-        "34443DZZ",
-        "2366BBVB",
-        "EWUY78363",
-        "8385824",
-        "1E3W1333",
-        "34443DZZ"
+        "21",
+        "17",
+        "56",
+        "12",
+        "5",
+        "6",
+        "12",
+        "100",
+        "20",
+        "15"
     ]
 
 
     correctAnswers = [
-        "A",
-        "B",
         "C",
-        "D",
-        "A",
-        "B",
         "C",
+        "B",
+        "B",
+        "B",
+        "B",
         "D",
-        "A",
-        "B"
+        "B",
+        "B",
+        "C"    
     ]
 }
 
@@ -389,6 +390,7 @@ function countdown () {
     }
 }
 
+// Actual timer 
 const intervalId = setInterval(countdown, 1000); // Every 1 second
 
 // Allows movement by clicking numbers
@@ -703,6 +705,7 @@ optionDButton.addEventListener("click", function (){
 });
 
 //Scoring  (Saves total score as "score" in local storage and unanswered questions as "unanswered" for use in summary tab tab)
+// Also saves list of correctly answered questions and unattempted questions.
 document.getElementById("question-nav-button").addEventListener("click", function ()
 {
     let actualCorrect = [];
