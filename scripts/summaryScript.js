@@ -100,12 +100,35 @@ else
     ]
 }
 
+let actualCorrect = localStorage.getItem("actualCorrect").split(",");
+let actualUnanswered = localStorage.getItem("actualUnanswered").split(",");
+
+let j = 0;
+let k = 0;
+
 function corrections (questionNumber)
 {
     let index = questionNumber-1;
     document.getElementsByClassName("question")[index].innerHTML = questions[index];
     document.getElementsByClassName("answer")[index].innerHTML = correctAnswers[index];
     document.getElementsByClassName("mark")[index].innerHTML = points;
+
+    
+    if (questionNumber == actualCorrect[j])
+    {
+        document.getElementsByClassName("question-summary-indicator")[index].innerHTML = "&check;";
+        j++;
+    }
+    else if (questionNumber == actualUnanswered[k])
+    {
+        document.getElementsByClassName("question-summary-indicator")[index].innerHTML = "&propto;";
+        k++;
+    }
+    else
+    {
+        document.getElementsByClassName("question-summary-indicator")[index].innerHTML = "&times;";
+    }
+
 }
 
 for (let i = 1; i <= 10; i++)

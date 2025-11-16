@@ -361,14 +361,27 @@ function countdown () {
     if (time < 0){
         clearInterval(intervalId);
 
+        let actualCorrect = [];
+        let actualUnanswered = [];
+
         for (let answer in correctAnswers)
         {
+            let qNum = Number(answer) + 1;
             if(correctAnswers[answer] === optionChoices[answer])
+            {
+                actualCorrect[totalScore] = qNum;
                 totalScore ++;
+                
+            }
             else if (optionChoices[answer] === undefined)
+            {
+                actualUnanswered[totalUnanswered] = qNum;
                 totalUnanswered ++;
+            }
         }
 
+        localStorage.setItem("actualCorrect", String(actualCorrect));
+        localStorage.setItem("actualUnanswered", String(actualUnanswered));
         localStorage.setItem("unanswered", totalUnanswered); 
         localStorage.setItem("score", totalScore); 
 
@@ -692,14 +705,27 @@ optionDButton.addEventListener("click", function (){
 //Scoring  (Saves total score as "score" in local storage and unanswered questions as "unanswered" for use in summary tab tab)
 document.getElementById("question-nav-button").addEventListener("click", function ()
 {
+    let actualCorrect = [];
+    let actualUnanswered = [];
+
     for (let answer in correctAnswers)
     {
+        let qNum = Number(answer) + 1;
         if(correctAnswers[answer] === optionChoices[answer])
+        {
+            actualCorrect[totalScore] = qNum;
             totalScore ++;
+            
+        }
         else if (optionChoices[answer] === undefined)
+        {
+            actualUnanswered[totalUnanswered] = qNum;
             totalUnanswered ++;
+        }
     }
 
+    localStorage.setItem("actualCorrect", String(actualCorrect));
+    localStorage.setItem("actualUnanswered", String(actualUnanswered));
     localStorage.setItem("unanswered", totalUnanswered); 
     localStorage.setItem("score", totalScore); 
 
