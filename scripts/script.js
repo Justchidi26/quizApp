@@ -7,6 +7,7 @@ let optionChoices = [];
 let correctAnswers;
 let totalScore = 0;
 let totalUnanswered = 0;
+let time = 600; // 10 minutes
 const indexStartingPoint = 3;
 
 // Subject choices
@@ -255,7 +256,7 @@ else
 }
 
 /*Variables (Question Number buttons, Space for Question, Space for Options, Option Buttons,
-                space for Question number,  Space for Question number over total questions, Navigation buttons )*/
+                space for Question number,  Space for Question number over total questions, Navigation buttons, space for timer)*/
 let qOne = document.getElementsByClassName("option-number")[indexStartingPoint + 1];
 let qTwo = document.getElementsByClassName("option-number")[indexStartingPoint + 2];
 let qThree = document.getElementsByClassName("option-number")[indexStartingPoint + 3];
@@ -285,6 +286,8 @@ let questionOutOfNum = document.getElementById("questionOutOfNum");
 
 let previousButton = document.getElementById("previous");
 let nextButton = document.getElementById("next");
+
+let timer = document.getElementById("timer")
 
 // Function that puts the right question, options and previous option choice for each number
 function change(questionNumber){
@@ -337,9 +340,43 @@ function change(questionNumber){
 
 // Loads the first question
 document.addEventListener("DOMContentLoaded", function(){
-    change(1);
+    change(1);   
 }
 );
+
+// Timer function
+function countdown () {
+    const minutes = Math.floor(time/60);
+    const seconds = time % 60;
+    if (seconds < 10)
+        timer.innerHTML = minutes + ":0" + seconds;
+    else 
+        timer.innerHTML = minutes + ":" + seconds;
+    time --;
+
+    if (time < 120) {
+        timer.style.color = "red";
+    }
+
+    if (time < 0){
+        clearInterval(intervalId);
+
+        for (let answer in correctAnswers)
+        {
+            if(correctAnswers[answer] === optionChoices[answer])
+                totalScore ++;
+            else if (optionChoices[answer] === undefined)
+                totalUnanswered ++;
+        }
+
+        localStorage.setItem("unanswered", totalUnanswered); 
+        localStorage.setItem("score", totalScore); 
+
+        window.location.href= "summary.html";
+    }
+}
+
+const intervalId = setInterval(countdown, 1000); // Every 1 second
 
 // Allows movement by clicking numbers
 qOne.addEventListener("click", function(){
