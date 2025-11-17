@@ -1,3 +1,6 @@
+// Ensure proper management of local storage
+document.addEventListener("DOMContentLoaded", localStorage.clear());
+
 
 // Gets information about subject, stores in local storage for use in other files and moves to the next webpage.
 document.addEventListener("submit", function (e){
