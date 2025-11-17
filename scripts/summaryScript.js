@@ -136,11 +136,10 @@ function corrections (questionNumber)
 
 }
 
-    // Using the function for all questions 
-    for (let i = 1; i <= 10; i++)
-    {
-        corrections(i);
-    }
+// Using the function for all questions 
+for (let i = 1; i <= 10; i++)
+{
+    corrections(i);
+}
 
-
-    localStorage.clear();
+    
