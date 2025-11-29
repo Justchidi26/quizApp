@@ -459,7 +459,7 @@ questionButtons.forEach((button,index) => {
 })
 });
 
-// Movement by Previous and Next
+// Movement by Previous
 previousButton.addEventListener("click", function(){
     function previousQuestion(questionButton, index)
     {
@@ -478,6 +478,7 @@ previousButton.addEventListener("click", function(){
     }
 })
 
+// Movement by Next
 nextButton.addEventListener("click", function(){
     function nextQuestion(questionButtonN, numberN)
     {
@@ -497,112 +498,31 @@ nextButton.addEventListener("click", function(){
             nextQuestion(questionButtons[end], end);
         }
     } 
-});
+})
 
-// Selection of Options 
-optionAButton.addEventListener("click", function (){
-    optionAButton.classList.add("selected");
-    optionBButton.classList.remove("selected");
-    optionCButton.classList.remove("selected");
-    optionDButton.classList.remove("selected");
+// Storing choices
+const optionButtons = [optionAButton,optionBButton,optionCButton,optionDButton];
+const optionButtonsLetters = ["A", "B", "C", "D"];
 
-    function optionChosen(questionNum, number)
+optionButtons.forEach((buttonOption,index) => {
+    buttonOption.addEventListener("click", function(){
+
+    this.classList.add("selected");
+
+    for (let button in optionButtons)
     {
-        if (questionNum.classList.contains("current")) {
-            optionChoices[number - 1] = "A"
-            questionNum.classList.add("answered");
-        }
-        
+        if (this !== optionButtons[button])
+            optionButtons[button].classList.remove("selected");
     }
 
-    optionChosen(qOne, 1);
-    optionChosen(qTwo, 2);
-    optionChosen(qThree, 3);
-    optionChosen(qFour, 4);
-    optionChosen(qFive, 5);
-    optionChosen(qSix, 6);
-    optionChosen(qSeven, 7);
-    optionChosen(qEight, 8);
-    optionChosen(qNine, 9);
-    optionChosen(qTen, 10);
-});
-
-optionBButton.addEventListener("click", function (){
-    optionBButton.classList.add("selected");
-    optionAButton.classList.remove("selected");
-    optionCButton.classList.remove("selected");
-    optionDButton.classList.remove("selected");
-
-    function optionChosen(questionNum, number)
+    for (let button in  questionButtons)
     {
-        if (questionNum.classList.contains("current")) {
-            optionChoices[number - 1] = "B"
-            questionNum.classList.add("answered");
+        if (questionButtons[button].classList.contains("current")) {
+            optionChoices[button] = optionButtonsLetters[index];
+            questionButtons[button].classList.add("answered");
         }
     }
-
-    optionChosen(qOne, 1);
-    optionChosen(qTwo, 2);
-    optionChosen(qThree, 3);
-    optionChosen(qFour, 4);
-    optionChosen(qFive, 5);
-    optionChosen(qSix, 6);
-    optionChosen(qSeven, 7);
-    optionChosen(qEight, 8);
-    optionChosen(qNine, 9);
-    optionChosen(qTen, 10);
-});
-
-optionCButton.addEventListener("click", function (){
-    optionCButton.classList.add("selected");
-    optionBButton.classList.remove("selected");
-    optionAButton.classList.remove("selected");
-    optionDButton.classList.remove("selected");
-
-    function optionChosen(questionNum, number)
-    {
-        if (questionNum.classList.contains("current")) {
-            optionChoices[number - 1] = "C";
-            questionNum.classList.add("answered");
-        }
-    }
-
-    optionChosen(qOne, 1);
-    optionChosen(qTwo, 2);
-    optionChosen(qThree, 3);
-    optionChosen(qFour, 4);
-    optionChosen(qFive, 5);
-    optionChosen(qSix, 6);
-    optionChosen(qSeven, 7);
-    optionChosen(qEight, 8);
-    optionChosen(qNine, 9);
-    optionChosen(qTen, 10);
-});
-
-optionDButton.addEventListener("click", function (){
-    optionDButton.classList.add("selected");
-    optionBButton.classList.remove("selected");
-    optionCButton.classList.remove("selected");
-    optionAButton.classList.remove("selected");
-
-    function optionChosen(questionNum, number)
-    {
-        if (questionNum.classList.contains("current")) {
-            optionChoices[number - 1] = "D"
-            questionNum.classList.add("answered");
-        }
-    }
-
-    optionChosen(qOne, 1);
-    optionChosen(qTwo, 2);
-    optionChosen(qThree, 3);
-    optionChosen(qFour, 4);
-    optionChosen(qFive, 5);
-    optionChosen(qSix, 6);
-    optionChosen(qSeven, 7);
-    optionChosen(qEight, 8);
-    optionChosen(qNine, 9);
-    optionChosen(qTen, 10);
+})
 });
 
 //Scoring  (Saves total score as "score" in local storage and unanswered questions as "unanswered" for use in summary tab tab)
