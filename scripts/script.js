@@ -1,9 +1,8 @@
 let quizData = []; //Stores question,option and answer set for each subect.
 let optionChoices = []; // stores user's answers
-let correctAnswers; // Stores correct answers for marking
 let totalScore = 0; 
 let totalUnanswered = 0; //stores number of unattempted questions
-let time = 600; // 10 minutes
+let time = 300; // 5 minutes
 const indexStartingPoint = 3; 
 
 // Subject choices thast influence the variables 
@@ -462,31 +461,7 @@ function countdown () {
     if (time < 0){
         clearInterval(intervalId);
 
-        let actualCorrect = [];
-        let actualUnanswered = [];
-
-        for (let answer in correctAnswers)
-        {
-            let qNum = Number(answer) + 1;
-            if(correctAnswers[answer] === optionChoices[answer])
-            {
-                actualCorrect[totalScore] = qNum;
-                totalScore ++;
-                
-            }
-            else if (optionChoices[answer] === undefined)
-            {
-                actualUnanswered[totalUnanswered] = qNum;
-                totalUnanswered ++;
-            }
-        }
-
-        localStorage.setItem("actualCorrect", String(actualCorrect));
-        localStorage.setItem("actualUnanswered", String(actualUnanswered));
-        localStorage.setItem("unanswered", totalUnanswered); 
-        localStorage.setItem("score", totalScore); 
-
-        window.location.href= "summary.html";
+        document.getElementById("question-nav-button").click();
     }
 }
 
