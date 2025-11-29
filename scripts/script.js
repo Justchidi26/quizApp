@@ -443,6 +443,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 const questionButtons = [qOne,qTwo,qThree,qFour,qFive,qSix,qSeven,qEight,qNine,qTen];
 
+// Navigation by clicking question buttons
 questionButtons.forEach((button,index) => {
     button.addEventListener("click", function(){
 
@@ -460,25 +461,21 @@ questionButtons.forEach((button,index) => {
 
 // Movement by Previous and Next
 previousButton.addEventListener("click", function(){
-    function previousQuestion(questionButton, number)
+    function previousQuestion(questionButton, index)
     {
         if (questionButton.classList.contains("current"))
         {
-            change(number-1);
+            change(index);
             questionButton.classList.remove("current");
-            document.getElementsByClassName("option-number")[(indexStartingPoint + number) - 1].classList.add("current");
+            document.getElementsByClassName("option-number")[indexStartingPoint + Number(index)].classList.add("current");
         }
     }
     
-    previousQuestion(qTwo, 2);
-    previousQuestion(qThree, 3);
-    previousQuestion(qFour, 4);
-    previousQuestion(qFive, 5);
-    previousQuestion(qSix, 6);
-    previousQuestion(qSeven, 7);
-    previousQuestion(qEight, 8);
-    previousQuestion(qNine, 9);
-    previousQuestion(qTen, 10);
+    for(let button in questionButtons)
+    {
+        if (button !== 0)
+            previousQuestion(questionButtons[button], button);
+    }
 })
 
 nextButton.addEventListener("click", function(){
