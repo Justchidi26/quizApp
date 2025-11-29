@@ -441,164 +441,21 @@ document.addEventListener("DOMContentLoaded", function(){
 }
 );
 
-// Allows movement by clicking numbers
-qOne.addEventListener("click", function(){
+const questionButtons = [qOne,qTwo,qThree,qFour,qFive,qSix,qSeven,qEight,qNine,qTen];
+
+questionButtons.forEach((button,index) => {
+    button.addEventListener("click", function(){
+
     this.classList.add("current");
 
-    qThree.classList.remove("current");
-    qFour.classList.remove("current");
-    qFive.classList.remove("current");
-    qSix.classList.remove("current");
-    qSeven.classList.remove("current");
-    qEight.classList.remove("current");
-    qTwo.classList.remove("current");
-    qNine.classList.remove("current");
-    qTen.classList.remove("current");
-    
-    change(1);
-});
+    for (let button in questionButtons)
+    {
+        if (this !== questionButtons[button])
+            questionButtons[button].classList.remove("current");
+    }
 
-qTwo.addEventListener("click", function(){
-    this.classList.add("current");
-
-    qThree.classList.remove("current");
-    qFour.classList.remove("current");
-    qFive.classList.remove("current");
-    qSix.classList.remove("current");
-    qSeven.classList.remove("current");
-    qEight.classList.remove("current");
-    qOne.classList.remove("current");
-    qNine.classList.remove("current");
-    qTen.classList.remove("current");
-    
-    change(2);
-});
-
-qThree.addEventListener("click", function(){
-    this.classList.add("current");
-
-    qOne.classList.remove("current");
-    qFour.classList.remove("current");
-    qFive.classList.remove("current");
-    qSix.classList.remove("current");
-    qSeven.classList.remove("current");
-    qEight.classList.remove("current");
-    qTwo.classList.remove("current");
-    qNine.classList.remove("current");
-    qTen.classList.remove("current");
-    
-    change(3)
-});
-
-qFour.addEventListener("click", function(){
-    this.classList.add("current");
-
-    qThree.classList.remove("current");
-    qOne.classList.remove("current");
-    qFive.classList.remove("current");
-    qSix.classList.remove("current");
-    qSeven.classList.remove("current");
-    qEight.classList.remove("current");
-    qTwo.classList.remove("current");
-    qNine.classList.remove("current");
-    qTen.classList.remove("current");
-    
-    change(4);
-});
-
-qFive.addEventListener("click", function(){
-    this.classList.add("current");
-
-    qThree.classList.remove("current");
-    qFour.classList.remove("current");
-    qOne.classList.remove("current");
-    qSix.classList.remove("current");
-    qSeven.classList.remove("current");
-    qEight.classList.remove("current");
-    qTwo.classList.remove("current");
-    qNine.classList.remove("current");
-    qTen.classList.remove("current");
-    
-    change(5);
-});
-
-qSix.addEventListener("click", function(){
-    this.classList.add("current");
-
-    qThree.classList.remove("current");
-    qFour.classList.remove("current");
-    qFive.classList.remove("current");
-    qOne.classList.remove("current");
-    qSeven.classList.remove("current");
-    qEight.classList.remove("current");
-    qTwo.classList.remove("current");
-    qNine.classList.remove("current");
-    qTen.classList.remove("current");
-    
-    change(6);
-});
-
-qSeven.addEventListener("click", function(){
-    this.classList.add("current");
-
-    qThree.classList.remove("current");
-    qFour.classList.remove("current");
-    qFive.classList.remove("current");
-    qSix.classList.remove("current");
-    qOne.classList.remove("current");
-    qEight.classList.remove("current");
-    qTwo.classList.remove("current");
-    qNine.classList.remove("current");
-    qTen.classList.remove("current");
-    
-    change(7);
-});
-
-qEight.addEventListener("click", function(){
-    this.classList.add("current");
-
-    qThree.classList.remove("current");
-    qFour.classList.remove("current");
-    qFive.classList.remove("current");
-    qSix.classList.remove("current");
-    qSeven.classList.remove("current");
-    qOne.classList.remove("current");
-    qTwo.classList.remove("current");
-    qNine.classList.remove("current");
-    qTen.classList.remove("current");
-    
-    change(8);
-});
-qNine.addEventListener("click", function(){
-    this.classList.add("current");
-
-    qThree.classList.remove("current");
-    qFour.classList.remove("current");
-    qFive.classList.remove("current");
-    qSix.classList.remove("current");
-    qSeven.classList.remove("current");
-    qEight.classList.remove("current");
-    qTwo.classList.remove("current");
-    qOne.classList.remove("current");
-    qTen.classList.remove("current");
-    
-    change(9);
-});
-
-qTen.addEventListener("click", function(){
-    this.classList.add("current");
-
-    qThree.classList.remove("current");
-    qFour.classList.remove("current");
-    qFive.classList.remove("current");
-    qSix.classList.remove("current");
-    qSeven.classList.remove("current");
-    qEight.classList.remove("current");
-    qTwo.classList.remove("current");
-    qNine.classList.remove("current");
-    qOne.classList.remove("current");
-    
-    change(10);
+    change(index + 1);
+})
 });
 
 // Movement by Previous and Next
