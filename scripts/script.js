@@ -1,8 +1,4 @@
-let questions; // Stores questions
-let answersA; // All answers in option A
-let answersB; // All answers in option B
-let answersC; // All answers in option C
-let answersD; // All answers in option D
+let quizData = []; //Stores question,option and answer set for each subect.
 let optionChoices = []; // stores user's answers
 let correctAnswers; // Stores correct answers for marking
 let totalScore = 0; 
@@ -14,245 +10,349 @@ const indexStartingPoint = 3;
 if ( localStorage.subjects == "English")
 {
     document.getElementById("subject").innerHTML = "English Studies";
-    questions = [
-        "Which of the following words is a noun?",
-        "Choose the correct past tense of the verb 'go'",
-        "Which word is the antonym (opposite) of 'happy'?",
-        "Identify the adjective in this sentence: 'The tall girl won the race.'",
-        "Which word is a synonym (similar meaning) for 'big'?",
-        "What is the correct plural form of 'child'?",
-        "Choose the correct preposition to complete the sentence: 'The cat is hiding ___ the table.'",
-        "Which punctuation mark should be used at the end of this sentence: 'What is your name'",
-        "Choose the correct word to complete the sentence: '___ are my best friends.'",
-        "Which sentence has the correct subject-verb agreement?"
-    ]
 
-    answersA = [
-        "run",
-        "goed",
-        "joyful",
-        "girl",
-        "small",
-        "childs",
-        "on",
-        ".(period)",
-        "They",
-        "The dogs barks loudly."
-    ]
+    quizData = [
+        {
+            question: "Which of the following words is a noun?",
+            option: {
+              A:"run",
+              B:"happy",
+              C:"book",
+              D:"quickly"
+            },
+            correctAnswer: "C"
+        },
 
-    answersB = [
-        "happy",
-        "gone",
-        "sad",
-        "won",
-        "large",
-        "childes",
-        "at",
-        ",(comma)",
-        "Them",
-        "The dog barks loudly."
-    ]
+        {
+            question:"Choose the correct past tense of the verb 'go'",
+            option: {
+              A:"goed",
+              B: "gone",
+              C: "went",
+              D: "going"
+            },
+            correctAnswer: "C"
+        },
 
-    answersC= [
-        "book",
-        "went",
-        "glad",
-        "race",
-        "tiny",
-        "children",
-        "under",
-        "? (question mark)",
-        "Their",
-        "The dog bark loudly."
-    ]
+        {
+            question: "Which word is the antonym (opposite) of 'happy'?",
+            option: {
+              A: "joyful",
+              B: "sad",
+              C: "glad",
+              D: "lucky"
+            },
+            correctAnswer: "B"
+        },
 
-    answersD = [
-        "quickly",
-        "going",
-        "lucky",
-        "tall",
-        "soft",
-        "child",
-        "with",
-        "! (exclamation mark)",
-        "Him",
-        "The dogs barked loudly."
-    ]
+        {
+            question: "Identify the adjective in this sentence: 'The tall girl won the race.'",
+            option: {
+              A: "girl",
+              B: "won",
+              C: "race",
+              D: "tall"
+            },
+            correctAnswer: "D"
+        },
 
-    correctAnswers = [
-        "C",
-        "C",
-        "B",
-        "D",
-        "B",
-        "C",
-        "C",
-        "C",
-        "A",
-        "B"
+        
+
+        {
+            question: "Which word is a synonym (similar meaning) for 'big'?",
+            option: {
+              A: "small",
+              B: "large",
+              C: "tiny",
+              D:  "soft"
+            },
+            correctAnswer: "B"
+        },
+
+        {
+            question: "What is the correct plural form of 'child'?",
+            option: {
+              A: "childs",
+              B: "childes",
+              C: "children",
+              D:  "child"
+            },
+            correctAnswer: "C"
+        },
+
+        {
+            question: "Choose the correct preposition to complete the sentence: 'The cat is hiding ___ the table.'",
+            option: {
+              A: "on",
+              B: "at",
+              C: "under",
+              D:  "with"
+            },
+            correctAnswer: "C"
+        },
+
+        {
+            question: "Which punctuation mark should be used at the end of this sentence: 'What is your name'",
+            option: {
+              A: ".(period)",
+              B: ",(comma)",
+              C:"? (question mark)",
+              D:  "! (exclamation mark)",
+            },
+            correctAnswer: "C"
+        },
+
+        {
+            question: "Choose the correct word to complete the sentence: '___ are my best friends.'",
+            option: {
+              A: "They",
+              B: "Them",
+              C:"Their",
+              D: "Him",
+            },
+            correctAnswer: "A"
+        },
+        
+        {
+            question: "Which sentence has the correct subject-verb agreement?",
+            option: {
+              A: "The dogs barks loudly.",
+              B: "The dog barks loudly.",
+              C: "The dog bark loudly.",
+              D:  "The dogs barked loudly."
+            },
+            correctAnswer: "B"
+        }
     ]
 }   
 else if ( localStorage.subjects == "Basic Science")
 {
     document.getElementById("subject").innerHTML = "Basic Science";
 
-    questions = [
-        "What part of a plant absorbs water and nutrients from the soil?",
-        "Which planet is known as the 'Red Planet'?",
-        "What is the chemical symbol for water?",
-        "What force pulls objects toward the center of the Earth?",
-        "How many legs does a spider have?",
-        "What is the largest organ in the human body?",
-        "What gas do plants release during photosynthesis?",
-        "What state of matter is steam?",
-        "What is the center of our Solar System?",
-        "What type of animal is a frog?"
-    ]
+    quizData = [
+        {
+            question:"What part of a plant absorbs water and nutrients from the soil?",
+            option: {
+              A:"Leaf",
+              B:"Stem",
+              C:"Flower",
+              D: "Root"
+            },
+            correctAnswer: "D"
+        },
 
-    answersA = [
-        "Leaf",
-        "Earth",
-        "O2",
-        "Magnetism",
-        "6",
-        "Heart",
-        "Nitrogen",
-        "Solid",
-        "The Moon",
-        "Mammal"
-    ]
+        {
+            question: "Which planet is known as the 'Red Planet'?",
+            option: {
+              A: "Earth",
+              B: "Mars",
+              C:"Jupiter",
+              D: "Venus" 
+            },
+            correctAnswer:"B"
+        },
 
-    answersB = [
-        "Stem",
-        "Mars",
-        "H2O",
-        "Friction",
-        "8",
-        "Liver",
-        "Oxygen",
-        "Liquid",
-        "The Sun",
-        "Reptile"
-    ]
+        {
+            question: "What is the chemical symbol for water?",
+            option: {
+              A: "O2",
+              B: "H2O",
+              C:"CO2",
+              D: "NaCl" 
+            },
+            correctAnswer:"B"
+        },
 
-    answersC= [
-        "Flower",
-        "Jupiter",
-        "CO2",
-        "Gravity",
-        "10",
-        "Skin",
-        "Carbon Dioxide",
-        "Gas",
-        "Mars",
-        "Amphibian"
-    ]
+        {
+            question: "What force pulls objects toward the center of the Earth?",
+            option: {
+              A:"Magnetism",
+              B:"Friction",
+              C:"Gravity",
+              D: "Tension"
+            },
+            correctAnswer: "C"
+        },
 
-    answersD = [
-        "Root",
-        "Venus",
-        "NaCl",
-        "Tension",
-        "4",
-        "Brain",
-        "Hydrogen",
-        "Plasma",
-        "A Comet",
-        "Fish"
-    ]
+        {
+            question: "How many legs does a spider have?",
+            option: {
+              A:"6",
+              B:"8",
+              C:"10",
+              D:"4"  
+            },
+            correctAnswer:"B"
+        },
 
-    correctAnswers = [
-        "D",
-        "B",
-        "B",
-        "C",
-        "B",
-        "C",
-        "B",
-        "C",
-        "B",
-        "C"
+        {
+            question: "What is the largest organ in the human body?",
+            option: {
+              A:"Heart",
+              B:"Liver",
+              C:"Skin",
+              D:"Brain" 
+            },
+            correctAnswer: "C"
+        },
+
+        {
+            question: "What gas do plants release during photosynthesis?",
+            option: {
+              A:"Nitrogen",
+              B:"Oxygen",
+              C:"Carbon Dioxide",
+              D: "Hydrogen"
+            },
+            correctAnswer:"B"
+        },
+
+        {
+            question: "What state of matter is steam?",
+            option: {
+              A:"Solid",
+              B:"Liquid",
+              C:"Gas",
+              D:"Plasma"  
+            },
+            correctAnswer:"C"
+        },
+
+        {
+            question: "What is the center of our Solar System?",
+            option: {
+              A: "The Moon",
+              B:"The Sun",
+              C:"Mars",
+              D:"A Comet"
+            },
+            correctAnswer:"B"
+        },
+
+        {
+            question: "What type of animal is a frog?",
+            option: {
+              A:"Mammal",
+              B:"Reptile",
+              C:"Amphibian",
+              D: "Fish"
+            },
+            correctAnswer:"C"
+        }
     ]
 }
 else 
 {
-    questions = [
-        "What is 12 + 8?",
-        "What is 25 - 9?",
-        "What is 7 x 6?",
-        "What is 36 / 4?",
-        "How many sides does a triangle have?",
-        "How many sides does a square have?",
-        "Which of these numbers is an even number?",
-        "How many minutes are in one hour?",
-        "What is 1/2 (one-half) of 20?",
-        "If x + 5 = 10, what is x?"
-    ]
+    quizData = [
+        {
+            question:"What is 12 + 8?",
+            option: {
+              A: "18",
+              B: "19",
+              C: "20",
+              D: "21" 
+            },
+            correctAnswer:"C"
+        },
 
-    answersA = [
-        "18",
-        "14",
-        "40",
-        "8",
-        "2",
-        "3",
-        "7",
-        "30",
-        "5",
-        "3"
-    ]
+        {
+            question:"What is 25 - 9?",
+            option: {
+              A:"14",
+              B:"15",
+              C:"16",
+              D:"17"
+            },
+            correctAnswer: "C"
+        },
 
-    answersB = [
-        "19",
-        "15",
-        "42",
-        "9",
-        "3",
-        "4",
-        "9",
-        "60",
-        "10",
-        "4"
-    ]
+        {
+            question:"What is 7 x 6?",
+            option: {
+              A:"40",
+              B:"42",
+              C:"48",
+              D:"56" 
+            },
+            correctAnswer:"B"
+        },
 
-    answersC= [
-        "20",
-        "16",
-        "48",
-        "10",
-        "4",
-        "5",
-        "11",
-        "90",
-        "15",
-        "5"
-    ]
+        {
+            question:"What is 36 / 4?",
+            option: {
+              A:"8",
+              B:"9",
+              C:"10",
+              D:"12" 
+            },
+            correctAnswer:"B"
+        },
 
-    answersD = [
-        "21",
-        "17",
-        "56",
-        "12",
-        "5",
-        "6",
-        "12",
-        "100",
-        "20",
-        "15"
-    ]
+        {
+            question:"How many sides does a triangle have?",
+            option: {
+              A:"2",
+              B:"3",
+              C:"4",
+              D: "5" 
+            },
+            correctAnswer:"B"
+        },
 
+        {
+            question:"How many sides does a square have?",
+            option: {
+              A:"3",
+              B:"4",
+              C:"5",
+              D:"6"
+            },
+            correctAnswer:"B"
+        },
 
-    correctAnswers = [
-        "C",
-        "C",
-        "B",
-        "B",
-        "B",
-        "B",
-        "D",
-        "B",
-        "B",
-        "C"    
+        {
+            question:"Which of these numbers is an even number?",
+            option: {
+              A:"7",
+              B:"9",
+              C:"11",
+              D: "12" 
+            },
+            correctAnswer:"D"
+        },
+
+        {
+            question:"How many minutes are in one hour?",
+            option: {
+              A:"30",
+              B:"60",
+              C:"90",
+              D:"100"
+            },
+            correctAnswer:"B"
+        },
+
+        {
+            question:"What is 1/2 (one-half) of 20?",
+            option: {
+              A:"5",
+              B:"10",
+              C:"15",
+              D:"20"
+            },
+            correctAnswer:"B"
+        },
+        
+        {
+            question:"If x + 5 = 10, what is x?",
+            option: {
+              A:"3",
+              B: "4",
+              C:"5",
+              D:"15" 
+            },
+            correctAnswer:"C"
+        }
     ]
 }
 
@@ -293,11 +393,11 @@ let timer = document.getElementById("timer")
 // Function that puts the right question, options and previous option choice for each number
 function change(questionNumber){
     let index = questionNumber - 1
-    mainQuestion.innerHTML = questions[index];
-    optionA.innerHTML = "<h3>"+ answersA[index] +"</h3>";
-    optionB.innerHTML = "<h3>"+ answersB[index] +"</h3>";
-    optionC.innerHTML = "<h3>"+ answersC[index] +"</h3>";
-    optionD.innerHTML = "<h3>"+ answersD[index] +"</h3>";
+    mainQuestion.innerHTML = quizData[index].question;
+    optionA.innerHTML = "<h3>"+ quizData[index].option.A +"</h3>";
+    optionB.innerHTML = "<h3>"+ quizData[index].option.B +"</h3>";
+    optionC.innerHTML = "<h3>"+ quizData[index].option.C +"</h3>";
+    optionD.innerHTML = "<h3>"+ quizData[index].option.D +"</h3>";
 
     questionNum.innerHTML = "Question " +  questionNumber;
     questionOutOfNum.innerHTML = "Question " + questionNumber + "/10"
@@ -711,10 +811,10 @@ document.getElementById("question-nav-button").addEventListener("click", functio
     let actualCorrect = [];
     let actualUnanswered = [];
 
-    for (let answer in correctAnswers)
+    for (let answer in quizData)
     {
         let qNum = Number(answer) + 1;
-        if(correctAnswers[answer] === optionChoices[answer])
+        if(quizData[answer].correctAnswer === optionChoices[answer])
         {
             actualCorrect[totalScore] = qNum;
             totalScore ++;
