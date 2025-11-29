@@ -2,7 +2,6 @@ let quizData = []; //Stores question,option and answer set for each subect.
 let optionChoices = []; // stores user's answers
 let totalScore = 0; 
 let totalUnanswered = 0; //stores number of unattempted questions
-let time = 300; // 5 minutes
 const indexStartingPoint = 3; 
 
 // Subject choices thast influence the variables 
@@ -387,8 +386,6 @@ let questionOutOfNum = document.getElementById("questionOutOfNum");
 let previousButton = document.getElementById("previous");
 let nextButton = document.getElementById("next");
 
-let timer = document.getElementById("timer")
-
 // Function that puts the right question, options and previous option choice for each number
 function change(questionNumber){
     let index = questionNumber - 1
@@ -443,30 +440,6 @@ document.addEventListener("DOMContentLoaded", function(){
     change(1);   
 }
 );
-
-// Timer function
-function countdown () {
-    const minutes = Math.floor(time/60);
-    const seconds = time % 60;
-    if (seconds < 10)
-        timer.innerHTML = minutes + ":0" + seconds;
-    else 
-        timer.innerHTML = minutes + ":" + seconds;
-    time --;
-
-    if (time < 120) {
-        timer.style.color = "red";
-    }
-
-    if (time < 0){
-        clearInterval(intervalId);
-
-        document.getElementById("question-nav-button").click();
-    }
-}
-
-// Actual timer 
-const intervalId = setInterval(countdown, 1000); // Every 1 second
 
 // Allows movement by clicking numbers
 qOne.addEventListener("click", function(){
