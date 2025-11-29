@@ -473,7 +473,7 @@ previousButton.addEventListener("click", function(){
     
     for(let button in questionButtons)
     {
-        if (button !== 0)
+        if (button != 0)
             previousQuestion(questionButtons[button], button);
     }
 })
@@ -483,22 +483,21 @@ nextButton.addEventListener("click", function(){
     {
         if (questionButtonN.classList.contains("current"))
         {
-            change(numberN + 1);
+            change(numberN + 2);
             questionButtonN.classList.remove("current");
-            document.getElementsByClassName("option-number")[indexStartingPoint + numberN + 1].classList.add("current");
+            document.getElementsByClassName("option-number")[indexStartingPoint + Number(numberN) + 2].classList.add("current");
         }
     }
 
-    nextQuestion(qNine, 9);
-    nextQuestion(qEight, 8);
-    nextQuestion(qSeven, 7);
-    nextQuestion(qSix, 6);
-    nextQuestion(qFive, 5);
-    nextQuestion(qFour, 4);
-    nextQuestion(qThree, 3);
-    nextQuestion(qTwo, 2);
-    nextQuestion(qOne, 1);   
-})
+    for(let button in questionButtons)
+    {
+        end = questionButtons.length - (Number(button) + 1);
+        if(end != questionButtons.length)
+        {
+            nextQuestion(questionButtons[end], end);
+        }
+    } 
+});
 
 // Selection of Options 
 optionAButton.addEventListener("click", function (){
