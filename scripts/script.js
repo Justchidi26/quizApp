@@ -1,15 +1,15 @@
 let quizData = []; //Stores question,option and answer set for each subect.
 let optionChoices = []; // stores user's answers
-let totalScore = 0; 
+let totalCorrect = 0; // stores number of correctly answered questions
 let totalUnanswered = 0; //stores number of unattempted questions
-const indexStartingPoint = 3; 
+const option_numberStartingIndex = 3; // Magic number that represents the first four obects of the class "option_number"
 
-// Subject choices thast influence the variables 
+// Subject choices that influence the question sets displayed.
 if ( localStorage.subjects == "English")
 {
-    document.getElementById("subject").innerHTML = "English Studies";
+    document.getElementById("subject").innerHTML = "English Studies"; // Changes the subect space to the chosen subect
 
-    quizData = [
+    quizData = [ // An array of objects that have the properties : question, option, correctAnswer for each question number 
         {
             question: "Which of the following words is a noun?",
             option: {
@@ -125,9 +125,9 @@ if ( localStorage.subjects == "English")
 }   
 else if ( localStorage.subjects == "Basic Science")
 {
-    document.getElementById("subject").innerHTML = "Basic Science";
+    document.getElementById("subject").innerHTML = "Basic Science"; // Changes the subect space to the chosen subect
 
-    quizData = [
+    quizData = [ // An array of objects that have the properties : question, option, correctAnswer for each question number
         {
             question:"What part of a plant absorbs water and nutrients from the soil?",
             option: {
@@ -241,7 +241,9 @@ else if ( localStorage.subjects == "Basic Science")
 }
 else 
 {
-    quizData = [
+    document.getElementById("subject").innerHTML = "Mathematics"; // Changes the subect space to the chosen subect
+
+    quizData = [ // An array of objects that have the properties : question, option, correctAnswer for each question number
         {
             question:"What is 12 + 8?",
             option: {
@@ -353,189 +355,191 @@ else
         }
     ]
 }
-
-/*Variables (Question Number buttons, Space for Question, Space for Options, Option Buttons,
-                space for Question number,  Space for Question number over total questions, Navigation buttons, space for timer)*/
                 
-const questionButtons = [
-    document.getElementsByClassName("option-number")[indexStartingPoint + 1],
-    document.getElementsByClassName("option-number")[indexStartingPoint + 2],
-    document.getElementsByClassName("option-number")[indexStartingPoint + 3],
-    document.getElementsByClassName("option-number")[indexStartingPoint + 4],
-    document.getElementsByClassName("option-number")[indexStartingPoint + 5],
-    document.getElementsByClassName("option-number")[indexStartingPoint + 6],
-    document.getElementsByClassName("option-number")[indexStartingPoint + 7],
-    document.getElementsByClassName("option-number")[indexStartingPoint + 8],
-    document.getElementsByClassName("option-number")[indexStartingPoint + 9],
-    document.getElementsByClassName("option-number")[indexStartingPoint + 10]
+const questionButtons = [ // Array that stores the html location of each number button on the navigation bar.
+    document.getElementsByClassName("option-number")[option_numberStartingIndex + 1], // Question 1 button
+    document.getElementsByClassName("option-number")[option_numberStartingIndex + 2], // Question 2 button
+    document.getElementsByClassName("option-number")[option_numberStartingIndex + 3], // Question 3 button
+    document.getElementsByClassName("option-number")[option_numberStartingIndex + 4], // Question 4 button
+    document.getElementsByClassName("option-number")[option_numberStartingIndex + 5], // Question 5 button
+    document.getElementsByClassName("option-number")[option_numberStartingIndex + 6], // Question 6 button
+    document.getElementsByClassName("option-number")[option_numberStartingIndex + 7], // Question 7 button
+    document.getElementsByClassName("option-number")[option_numberStartingIndex + 8], // Question 8 button
+    document.getElementsByClassName("option-number")[option_numberStartingIndex + 9], // Question 9 button
+    document.getElementsByClassName("option-number")[option_numberStartingIndex + 10] // Question 10 button
 ];
 
                 
-const optionButtons = [
-    document.getElementsByClassName("option-box")[0],
-    document.getElementsByClassName("option-box")[1],
-    document.getElementsByClassName("option-box")[2],
-    document.getElementsByClassName("option-box")[3]
+const optionButtons = [ // Array that stores the html location of the option boxes
+    document.getElementsByClassName("option-box")[0], // Option A box
+    document.getElementsByClassName("option-box")[1], // Option B box
+    document.getElementsByClassName("option-box")[2], // Option C box
+    document.getElementsByClassName("option-box")[3]  // Option D box
 ];
 
-const optionButtonsLetters = ["A", "B", "C", "D"];
+const optionButtonsLetters = ["A", "B", "C", "D"]; //  The corresponding option box's value
 
-let mainQuestion = document.getElementById("main-question");
+let mainQuestion = document.getElementById("main-question"); // HTML location of the question's text box 
 
-let optionA = document.getElementsByClassName("option-text")[0];
-let optionB = document.getElementsByClassName("option-text")[1];
-let optionC = document.getElementsByClassName("option-text")[2];
-let optionD = document.getElementsByClassName("option-text")[3];
+let optionABox = document.getElementsByClassName("option-text")[0]; // HTML location of the Option A's text box
+let optionBBox = document.getElementsByClassName("option-text")[1]; // HTML location of the Option B's text box
+let optionCBox = document.getElementsByClassName("option-text")[2]; // HTML location of the Option C's text box
+let optionDBox = document.getElementsByClassName("option-text")[3]; // HTML location of the Option D's text box
 
-let questionNum = document.getElementById("questionNum");
+let questionNum = document.getElementById("questionNum"); // HTML location of the question number indicator text box
 
-let questionOutOfNum = document.getElementById("questionOutOfNum");
+let questionOutOfNum = document.getElementById("questionOutOfNum"); // HTML location of the question number / 10 text box
 
-let previousButton = document.getElementById("previous");
-let nextButton = document.getElementById("next");
+let previousButton = document.getElementById("previous"); // HTML location of the "Previous" navigation button
+let nextButton = document.getElementById("next"); // HTML location of the "Next" navigation button
 
 // Function that puts the right question, options and previous option choice for each number
 function change(questionNumber){
-    let index = questionNumber - 1
-    mainQuestion.innerHTML = quizData[index].question;
-    optionA.innerHTML = "<h3>"+ quizData[index].option.A +"</h3>";
-    optionB.innerHTML = "<h3>"+ quizData[index].option.B +"</h3>";
-    optionC.innerHTML = "<h3>"+ quizData[index].option.C +"</h3>";
-    optionD.innerHTML = "<h3>"+ quizData[index].option.D +"</h3>";
+    let index = questionNumber - 1 // Gets actual location in array
 
-    questionNum.innerHTML = "Question " +  questionNumber;
-    questionOutOfNum.innerHTML = "Question " + questionNumber + "/10"
+    mainQuestion.innerHTML = quizData[index].question; // Displays the correct question according to number in the question text box
+    optionABox.innerHTML = "<h3>"+ quizData[index].option.A +"</h3>"; // Displays the correct option A according to number in the option A text box
+    optionBBox.innerHTML = "<h3>"+ quizData[index].option.B +"</h3>"; // Displays the correct option B according to number in the option B text box
+    optionCBox.innerHTML = "<h3>"+ quizData[index].option.C +"</h3>"; // Displays the correct option C according to number in the option C text box
+    optionDBox.innerHTML = "<h3>"+ quizData[index].option.D +"</h3>";  // Displays the correct option D according to number in the option D text box
+    
+    // Displays the correct Question number in the question number text boxes
+    questionNum.innerHTML = "Question " +  questionNumber;  
+    questionOutOfNum.innerHTML = "Question " + questionNumber + "/10" 
 
-    for(let optionIndex in optionButtons)
-    {
-        for (let i = 0; i < 4; i++)
+    for (let i = 0; i < 4; i++) // Makes sure no option is highlighted by error
             optionButtons[i].classList.remove("selected");
-        if(optionChoices[index] === optionButtonsLetters[optionIndex])
+
+    for(let optionIndex in optionButtons) // Loops through array of option boxes 
+    {  
+        if(optionChoices[index] === optionButtonsLetters[optionIndex]) // Checks to see if any option has been chosen for that number previously
         {
-            optionButtons[optionIndex].classList.add("selected");
+            optionButtons[optionIndex].classList.add("selected"); // Higlights the option found to be chosen before and breaks out of the loop
             break;
         }
     }
    
 }
 
-// Loads the first question
+// Loads the first question automatically at start 
 document.addEventListener("DOMContentLoaded", function(){
     change(1);   
 }
 );
 
 
-// Navigation by clicking question buttons
-questionButtons.forEach((button,index) => {
-    button.addEventListener("click", function(){
+// Navigation by clicking question number buttons
+questionButtons.forEach((button,index) => { // Adds the event listener of click for each button in the question Buttons array 
+    button.addEventListener("click", function(){ // Listens for the click
 
-    this.classList.add("current");
+    this.classList.add("current"); // Marks it as the current number in the navigation bar
 
-    for (let button in questionButtons)
+    for (let button in questionButtons) // loops though the question number buttons 
     {
         if (this !== questionButtons[button])
-            questionButtons[button].classList.remove("current");
+            questionButtons[button].classList.remove("current"); // and makes sure every other question number is not highlighted as current.
     }
 
-    change(index + 1);
+    change(index + 1); // Changes to that particular number's question set 
 })
 });
 
-// Movement by Previous
-previousButton.addEventListener("click", function(){
-    function previousQuestion(questionButton, index)
+// Movement by Clicking "Previous" button
+previousButton.addEventListener("click", function(){ // Waits for the click of the button
+    function previousQuestion(questionButton, index) 
     {
-        if (questionButton.classList.contains("current"))
+        if (questionButton.classList.contains("current")) // if the question number entered in is the presently active question
         {
-            change(index);
-            questionButton.classList.remove("current");
-            document.getElementsByClassName("option-number")[indexStartingPoint + Number(index)].classList.add("current");
+            change(index); // Change to the question set before it 
+            questionButton.classList.remove("current"); // Remove the highlight on it 
+            document.getElementsByClassName("option-number")[option_numberStartingIndex + Number(index)].classList.add("current"); // put the highlight on the number before it 
         }
     }
     
-    for(let button in questionButtons)
+    for(let button in questionButtons) // Loops through the question number buttons 
     {
         if (button != 0)
-            previousQuestion(questionButtons[button], button);
+            previousQuestion(questionButtons[button], button); // Previous button function works as long as the current question isn't Question 1
     }
 })
 
 // Movement by Next
-nextButton.addEventListener("click", function(){
+nextButton.addEventListener("click", function(){ // Waits for the click of the button
     function nextQuestion(questionButtonN, numberN)
     {
-        if (questionButtonN.classList.contains("current"))
+        if (questionButtonN.classList.contains("current")) // if the question number entered in is the presently active question
         {
-            change(numberN + 2);
-            questionButtonN.classList.remove("current");
-            document.getElementsByClassName("option-number")[indexStartingPoint + Number(numberN) + 2].classList.add("current");
+            change(numberN + 2); // Change to the question set after it 
+            questionButtonN.classList.remove("current"); // Remove the highlight on it 
+            document.getElementsByClassName("option-number")[option_numberStartingIndex + Number(numberN) + 2].classList.add("current");  // put the highlight on the number after it 
         }
     }
 
-    for(let button in questionButtons)
+    for(let button in questionButtons) // Loops through the question number buttons
     {
-        end = questionButtons.length - (Number(button) + 1);
-        if(end != questionButtons.length)
+        end = questionButtons.length - (Number(button) + 1); // Makes sure it checks in reverse oder
+        if(end != questionButtons.length) 
         {
-            nextQuestion(questionButtons[end], end);
+            nextQuestion(questionButtons[end], end); // Previous button function works as long as the current question isn't Question 10
         }
     } 
 })
 
-// Storing choices
+// Storing user's choices
+optionButtons.forEach((buttonOption,index) => { // Adds the event listener of click for each button in the option Buttons array
+    buttonOption.addEventListener("click", function(){ // Listens for the click
 
+    this.classList.add("selected"); // Marks it as the selected  option
 
-optionButtons.forEach((buttonOption,index) => {
-    buttonOption.addEventListener("click", function(){
-
-    this.classList.add("selected");
-
-    for (let button in optionButtons)
+    for (let button in optionButtons) // Loops through the option buttons
     {
         if (this !== optionButtons[button])
-            optionButtons[button].classList.remove("selected");
+            optionButtons[button].classList.remove("selected"); // and removes the higlight from every other unclicked option
     }
 
-    for (let button in  questionButtons)
+    for (let button in  questionButtons) // Loops through the option buttons
     {
-        if (questionButtons[button].classList.contains("current")) {
-            optionChoices[button] = optionButtonsLetters[index];
-            questionButtons[button].classList.add("answered");
+        if (questionButtons[button].classList.contains("current")) { // Checks for the question number 
+            optionChoices[button] = optionButtonsLetters[index];  // then stores in the array for user's choices for the appropriate number
+            questionButtons[button].classList.add("answered"); // Finally marks the question as answered on the nav bar 
         }
     }
 })
 });
 
-//Scoring  (Saves total score as "score" in local storage and unanswered questions as "unanswered" for use in summary tab tab)
-// Also saves list of correctly answered questions and unattempted questions.
-document.getElementById("question-nav-button").addEventListener("click", function ()
+//Scoring and next page 
+document.getElementById("question-nav-button").addEventListener("click", function () // Waits for submit button to be clicked 
 {
-    let actualCorrect = [];
-    let actualUnanswered = [];
+    let actualCorrect = []; // Array to save the numbers of Questions answered correctly
+    let actualUnanswered = []; // Array to save the numbers of Questions not answered at all
 
-    for (let answer in quizData)
+    for (let answer in quizData) // Goes through all the question sets in quizData array
     {
-        let qNum = Number(answer) + 1;
-        if(quizData[answer].correctAnswer === optionChoices[answer])
+        let questionNumber = Number(answer) + 1; // Gets actual question number 
+
+        if(quizData[answer].correctAnswer === optionChoices[answer]) // Gets the correct answer for the question and checks if it's the same as the option chosen by user 
         {
-            actualCorrect[totalScore] = qNum;
-            totalScore ++;
+            actualCorrect[totalCorrect] = questionNumber; // If same store into a space in the array for correctly answerd question
+            totalCorrect ++; // And increase the number of correctly answered questions by 1
             
         }
-        else if (optionChoices[answer] === undefined)
+        else if (optionChoices[answer] === undefined) // If option choice for that number doesn't exist (undefined)
         {
-            actualUnanswered[totalUnanswered] = qNum;
-            totalUnanswered ++;
+            actualUnanswered[totalUnanswered] = questionNumber; // Stores option number in array for unanswered question 
+            totalUnanswered ++; // And increase the number of unanswered questions by 1
         }
     }
 
-    localStorage.setItem("actualCorrect", String(actualCorrect));
-    localStorage.setItem("actualUnanswered", String(actualUnanswered));
-    localStorage.setItem("unanswered", totalUnanswered); 
-    localStorage.setItem("score", totalScore); 
+    localStorage.setItem("actualCorrect", String(actualCorrect)); // Saves the array of questions correctly answered as a string "actualCorrect" in local storage
+    localStorage.setItem("actualUnanswered", String(actualUnanswered)); // Saves the array of questions unanswered as a string "actualUnanswered" in local storage
+    localStorage.setItem("unanswered", totalUnanswered); // Saves total number of unanswered questions as "unanswered" in local storage 
+    localStorage.setItem("score", totalCorrect); // Saves total number of correctly answered question as "score" in local storage 
 
-    window.location.href= "summary.html";
+    window.location.href= "summary.html"; // Moves to summary page
 })
 
+/* 
+    Arrays are saved in the local storage as strings because the local storage doesn't take arrays 
+    So the array is converted to string and then converted back to an array when needed in the next page
+*/
 
