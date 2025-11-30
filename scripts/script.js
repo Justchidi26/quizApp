@@ -356,16 +356,29 @@ else
 
 /*Variables (Question Number buttons, Space for Question, Space for Options, Option Buttons,
                 space for Question number,  Space for Question number over total questions, Navigation buttons, space for timer)*/
-let qOne = document.getElementsByClassName("option-number")[indexStartingPoint + 1];
-let qTwo = document.getElementsByClassName("option-number")[indexStartingPoint + 2];
-let qThree = document.getElementsByClassName("option-number")[indexStartingPoint + 3];
-let qFour = document.getElementsByClassName("option-number")[indexStartingPoint + 4];
-let qFive = document.getElementsByClassName("option-number")[indexStartingPoint + 5];
-let qSix = document.getElementsByClassName("option-number")[indexStartingPoint + 6]
-let qSeven = document.getElementsByClassName("option-number")[indexStartingPoint + 7];
-let qEight = document.getElementsByClassName("option-number")[indexStartingPoint + 8];
-let qNine = document.getElementsByClassName("option-number")[indexStartingPoint + 9];
-let qTen = document.getElementsByClassName("option-number")[indexStartingPoint + 10];
+                
+const questionButtons = [
+    document.getElementsByClassName("option-number")[indexStartingPoint + 1],
+    document.getElementsByClassName("option-number")[indexStartingPoint + 2],
+    document.getElementsByClassName("option-number")[indexStartingPoint + 3],
+    document.getElementsByClassName("option-number")[indexStartingPoint + 4],
+    document.getElementsByClassName("option-number")[indexStartingPoint + 5],
+    document.getElementsByClassName("option-number")[indexStartingPoint + 6],
+    document.getElementsByClassName("option-number")[indexStartingPoint + 7],
+    document.getElementsByClassName("option-number")[indexStartingPoint + 8],
+    document.getElementsByClassName("option-number")[indexStartingPoint + 9],
+    document.getElementsByClassName("option-number")[indexStartingPoint + 10]
+];
+
+                
+const optionButtons = [
+    document.getElementsByClassName("option-box")[0],
+    document.getElementsByClassName("option-box")[1],
+    document.getElementsByClassName("option-box")[2],
+    document.getElementsByClassName("option-box")[3]
+];
+
+const optionButtonsLetters = ["A", "B", "C", "D"];
 
 let mainQuestion = document.getElementById("main-question");
 
@@ -373,11 +386,6 @@ let optionA = document.getElementsByClassName("option-text")[0];
 let optionB = document.getElementsByClassName("option-text")[1];
 let optionC = document.getElementsByClassName("option-text")[2];
 let optionD = document.getElementsByClassName("option-text")[3];
-
-let optionAButton = document.getElementsByClassName("option-box")[0];
-let optionBButton = document.getElementsByClassName("option-box")[1];
-let optionCButton = document.getElementsByClassName("option-box")[2];
-let optionDButton = document.getElementsByClassName("option-box")[3];
 
 let questionNum = document.getElementById("questionNum");
 
@@ -398,41 +406,17 @@ function change(questionNumber){
     questionNum.innerHTML = "Question " +  questionNumber;
     questionOutOfNum.innerHTML = "Question " + questionNumber + "/10"
 
-    if(optionChoices[index] === "A")
+    for(let optionIndex in optionButtons)
     {
-        optionAButton.classList.add("selected");
-        optionBButton.classList.remove("selected");
-        optionCButton.classList.remove("selected");
-        optionDButton.classList.remove("selected");
+        for (let i = 0; i < 4; i++)
+            optionButtons[i].classList.remove("selected");
+        if(optionChoices[index] === optionButtonsLetters[optionIndex])
+        {
+            optionButtons[optionIndex].classList.add("selected");
+            break;
+        }
     }
-    else if(optionChoices[index] === "B")
-    {
-        optionBButton.classList.add("selected");
-        optionAButton.classList.remove("selected");
-        optionCButton.classList.remove("selected");
-        optionDButton.classList.remove("selected");
-    }
-    else if(optionChoices[index] === "C")
-    {
-        optionCButton.classList.add("selected");
-        optionBButton.classList.remove("selected");
-        optionAButton.classList.remove("selected");
-        optionDButton.classList.remove("selected");
-    }
-    else if(optionChoices[index] === "D")
-    {
-        optionDButton.classList.add("selected");
-        optionBButton.classList.remove("selected");
-        optionCButton.classList.remove("selected");
-        optionAButton.classList.remove("selected");
-    }
-    else 
-    {
-        optionAButton.classList.remove("selected");
-        optionBButton.classList.remove("selected");
-        optionCButton.classList.remove("selected");
-        optionDButton.classList.remove("selected");
-    }
+   
 }
 
 // Loads the first question
@@ -441,7 +425,6 @@ document.addEventListener("DOMContentLoaded", function(){
 }
 );
 
-const questionButtons = [qOne,qTwo,qThree,qFour,qFive,qSix,qSeven,qEight,qNine,qTen];
 
 // Navigation by clicking question buttons
 questionButtons.forEach((button,index) => {
@@ -501,8 +484,7 @@ nextButton.addEventListener("click", function(){
 })
 
 // Storing choices
-const optionButtons = [optionAButton,optionBButton,optionCButton,optionDButton];
-const optionButtonsLetters = ["A", "B", "C", "D"];
+
 
 optionButtons.forEach((buttonOption,index) => {
     buttonOption.addEventListener("click", function(){
