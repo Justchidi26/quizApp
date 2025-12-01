@@ -418,6 +418,13 @@ function change(questionNumber){
             break;
         }
     }
+
+    if(questionButtons[0].classList.contains("current")) // Checks if it is on question 1
+    {
+        previousButton.style.display = "none"; // Removes the previous button on question 1
+    }
+    else
+        previousButton.style.display = "block"; // Adds it back for the rest
    
 }
 
@@ -449,10 +456,10 @@ previousButton.addEventListener("click", function(){ // Waits for the click of t
     function previousQuestion(questionButton, index) 
     {
         if (questionButton.classList.contains("current")) // if the question number entered in is the presently active question
-        {
-            change(index); // Change to the question set before it 
+        { 
             questionButton.classList.remove("current"); // Remove the highlight on it 
             document.getElementsByClassName("option-number")[option_numberStartingIndex + Number(index)].classList.add("current"); // put the highlight on the number before it 
+            change(index); // Change to the question set before it 
         }
     }
     
@@ -469,9 +476,9 @@ nextButton.addEventListener("click", function(){ // Waits for the click of the b
     {
         if (questionButtonN.classList.contains("current")) // if the question number entered in is the presently active question
         {
-            change(numberN + 2); // Change to the question set after it 
             questionButtonN.classList.remove("current"); // Remove the highlight on it 
             document.getElementsByClassName("option-number")[option_numberStartingIndex + Number(numberN) + 2].classList.add("current");  // put the highlight on the number after it 
+            change(numberN + 2); // Change to the question set after it 
         }
     }
 
