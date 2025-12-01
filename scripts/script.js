@@ -489,22 +489,35 @@ nextButton.addEventListener("click", function(){ // Waits for the click of the b
 optionButtons.forEach((buttonOption,index) => { // Adds the event listener of click for each button in the option Buttons array
     buttonOption.addEventListener("click", function(){ // Listens for the click
 
-    this.classList.add("selected"); // Marks it as the selected  option
+        this.classList.toggle("selected") // Marks or unmarks it as the selected  option
 
-    for (let button in optionButtons) // Loops through the option buttons
-    {
-        if (this !== optionButtons[button])
-            optionButtons[button].classList.remove("selected"); // and removes the higlight from every other unclicked option
-    }
+        if(this.classList.contains("selected")) // If it's currently chosen
+        {
+            for (let button in optionButtons) // Loops through the option buttons
+            {
+                if (this !== optionButtons[button])
+                    optionButtons[button].classList.remove("selected"); // and removes the higlight from every other unclicked option
+            }
 
-    for (let button in  questionButtons) // Loops through the option buttons
-    {
-        if (questionButtons[button].classList.contains("current")) { // Checks for the question number 
-            optionChoices[button] = optionButtonsLetters[index];  // then stores in the array for user's choices for the appropriate number
-            questionButtons[button].classList.add("answered"); // Finally marks the question as answered on the nav bar 
+            for (let button in  questionButtons) // Loops through the question buttons
+            {
+                if (questionButtons[button].classList.contains("current")) { // Checks for the question number 
+                    optionChoices[button] = optionButtonsLetters[index];  // then stores in the array for user's choices for the appropriate number
+                    questionButtons[button].classList.add("answered"); // Finally marks the question as answered on the nav bar 
+                }
+            }
         }
-    }
-})
+        else // If it's unselected
+        {
+            for (let button in  questionButtons) // Loops through the question buttons
+            {
+                if (questionButtons[button].classList.contains("current")) { // Checks for the question number 
+                    optionChoices[button] = undefined;  // Removes any previous choice from the array
+                    questionButtons[button].classList.remove("answered"); // Finally unmarks the question as answered on the nav bar 
+                }
+            }
+        }
+    })
 });
 
 //Scoring and next page 
