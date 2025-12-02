@@ -13,7 +13,7 @@ body {
 .container {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 10px
+  padding: 10px;
 }
 
 section {
@@ -400,6 +400,59 @@ section {
   width: 100%;
   font-size: 20px;
   margin: 10px 0;
+}
+
+/*Review page styling*/
+.review-header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  background: #282d49;
+  justify-content: space-between;
+  border-radius: 10px;
+  gap: 10px;
+}
+.review-question-button {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+.review-question-button button {
+  width: 170px;
+  height: 45px;
+  color: #fcfdff;
+  border: 1px solid #181b33;
+  background-color: #004783;
+}
+.review-question-button button:hover {
+  border: 1px solid #181b33;
+  background-color: #fcfdff;
+  color: #0d0d0e;
+}
+.close-btn {
+  background: transparent;
+  border: none;
+  color: #fcfdff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.close-btn:hover {
+  color: #ff4d4d;
+}
+.submit-btn button{
+  width: 100px;
+  height: 50px;
+  border: 1px solid #181b33;
+  background-color: #fcfdff;
+  color: #0d0d0e;
+
+}
+.submit-btn button:hover{
+  color: #fcfdff;
+  border: 1px solid #181b33;
+  background-color: #004783;
 }
 
 @media only screen and (max-width: 992px) {
