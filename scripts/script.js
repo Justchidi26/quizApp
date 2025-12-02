@@ -393,6 +393,20 @@ let questionOutOfNum = document.getElementById("questionOutOfNum"); // HTML loca
 let previousButton = document.getElementById("previous"); // HTML location of the "Previous" navigation button
 let nextButton = document.getElementById("next"); // HTML location of the "Next" navigation button
 
+function allAnswered(){ // This function checks if all questions has been answered
+    let total = 0
+    for (button of questionButtons) // Loops through all question 
+    {
+        if (button.classList.contains("answered")) // Checks if they've been answered
+            total ++;
+    }
+    
+    if (total < 9)
+        return false; // Returns false if all not answered
+    else
+        return true; // Returns true if all questions up to no 9 have been answered
+}
+
 // Function that puts the right question, options and previous option choice for each number
 function change(questionNumber){
     let index = questionNumber - 1 // Gets actual location in array
@@ -425,6 +439,15 @@ function change(questionNumber){
     }
     else
         previousButton.style.display = "block"; // Adds it back for the rest
+
+    if (questionButtons[9].classList.contains("current") && allAnswered() === false) // Checks if it is on question 1 and if user has answered all questions up to that point
+    {
+        nextButton.style.display = "none"; // Removes the next button on question 10 if any question prior is unanswered
+    }
+    else
+    {
+        nextButton.style.display = "block"; // // Adds it back for the rest or if prior questions are all answered
+    }
    
 }
 
@@ -482,14 +505,21 @@ nextButton.addEventListener("click", function(){ // Waits for the click of the b
         }
     }
 
-    for(let button in questionButtons) // Loops through the question number buttons
+    if (questionButtons[9].classList.contains("current") && allAnswered()) // Allows user to directly submit with next button at no. 10 once answered at least 9/10 questions
     {
-        end = questionButtons.length - (Number(button) + 1); // Makes sure it checks in reverse oder
-        if(end != questionButtons.length) 
+        document.getElementById("question-nav-button").click();
+    }
+    else
+    {
+        for(let button in questionButtons) // Loops through the question number buttons
         {
-            nextQuestion(questionButtons[end], end); // Previous button function works as long as the current question isn't Question 10
+            end = questionButtons.length - (Number(button) + 1); // Makes sure it checks in reverse oder
+            if(end != questionButtons.length) 
+            {
+                nextQuestion(questionButtons[end], end); // Previous button function works as long as the current question isn't Question 10
+            }
         }
-    } 
+    }
 })
 
 // Storing user's choices
