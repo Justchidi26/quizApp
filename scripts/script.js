@@ -472,7 +472,6 @@ document.addEventListener("DOMContentLoaded", function(){
 }
 );
 
-
 // Navigation by clicking question number buttons
 questionButtons.forEach((button,index) => { // Adds the event listener of click for each button in the question Buttons array 
     button.addEventListener("click", function(){ // Listens for the click
@@ -588,6 +587,10 @@ document.getElementById("cancel-submit").addEventListener("click", function () /
     document.body.classList.remove("modal-open");
 });
 
+document.getElementById("question-review-button").addEventListener("click", function(){
+    window.location.href = "review.html";
+})
+
 document.getElementById("confirm-submit").addEventListener("click", function () // Waits for submit button to be clicked 
 {
     let actualCorrect = []; // Array to save the numbers of Questions answered correctly
@@ -609,7 +612,7 @@ document.getElementById("confirm-submit").addEventListener("click", function () 
             totalUnanswered ++; // And increase the number of unanswered questions by 1
         }
     }
-    
+
     localStorage.setItem("actualCorrect", String(actualCorrect)); // Saves the array of questions correctly answered as a string "actualCorrect" in local storage
     localStorage.setItem("actualUnanswered", String(actualUnanswered)); // Saves the array of questions unanswered as a string "actualUnanswered" in local storage
     localStorage.setItem("unanswered", totalUnanswered); // Saves total number of unanswered questions as "unanswered" in local storage 
