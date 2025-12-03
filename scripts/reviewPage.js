@@ -323,13 +323,26 @@ else
     ]
 }
 
+optionChoices = localStorage.getItem("userChoices").split(",");
+
 // Function that puts the correct info per box in summary page 
 for(let index in quizData)
 {
     document.getElementsByClassName("main-question")[index].innerHTML = quizData[index].question;
 
-    document.getElementsByClassName("options")[index].getElementsByClassName("option-text")[0].innerHTML = "<h3>" + quizData[index].option.A + "</h3>"
-    document.getElementsByClassName("options")[index].getElementsByClassName("option-text")[1].innerHTML = "<h3>" + quizData[index].option.B + "</h3>"
-    document.getElementsByClassName("options")[index].getElementsByClassName("option-text")[2].innerHTML = "<h3>" + quizData[index].option.C + "</h3>"
-    document.getElementsByClassName("options")[index].getElementsByClassName("option-text")[3].innerHTML = "<h3>" + quizData[index].option.D + "</h3>"
+    questionBox = document.getElementsByClassName("options")[index];
+
+    questionBox.getElementsByClassName("option-text")[0].innerHTML = "<h3>" + quizData[index].option.A + "</h3>"
+    questionBox.getElementsByClassName("option-text")[1].innerHTML = "<h3>" + quizData[index].option.B + "</h3>"
+    questionBox.getElementsByClassName("option-text")[2].innerHTML = "<h3>" + quizData[index].option.C + "</h3>"
+    questionBox.getElementsByClassName("option-text")[3].innerHTML = "<h3>" + quizData[index].option.D + "</h3>"
+
+    if (optionChoices[index] === "A")
+        questionBox.getElementsByClassName("option-box")[0].classList.add("selected");
+    else if (optionChoices[index] === "B")
+        questionBox.getElementsByClassName("option-box")[1].classList.add("selected");
+    else if (optionChoices[index] === "C")
+        questionBox.getElementsByClassName("option-box")[2].classList.add("selected");
+    else  if (optionChoices[index] === "D")
+        questionBox.getElementsByClassName("option-box")[0].classList.add("selected");
 }
