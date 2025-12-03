@@ -459,7 +459,7 @@ function change(questionNumber){
 
 // Loads the first question automatically at start 
 document.addEventListener("DOMContentLoaded", function(){
-    if (localStorage.userChoices !== undefined)
+    if (localStorage.userChoices)
     {
         optionChoices = localStorage.getItem("userChoices").split(",");
         for (let button in questionButtons)
@@ -468,7 +468,15 @@ document.addEventListener("DOMContentLoaded", function(){
                 questionButtons[button].classList.add("answered");
         }
     }
-    change(1);
+
+    if (localStorage.question)
+    {
+        change(localStorage.question);
+        questionButtons[localStorage.question - 1].click();
+        localStorage.removeItem("question")
+    }
+    else
+        change(1);
 }
 );
 

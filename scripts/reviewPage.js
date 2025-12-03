@@ -344,5 +344,26 @@ for(let index in quizData)
     else if (optionChoices[index] === "C")
         questionBox.getElementsByClassName("option-box")[2].classList.add("selected");
     else  if (optionChoices[index] === "D")
-        questionBox.getElementsByClassName("option-box")[0].classList.add("selected");
+        questionBox.getElementsByClassName("option-box")[3].classList.add("selected");
 }
+
+backToQuestionButtons = [
+    document.getElementsByClassName("review-question-button")[0],
+    document.getElementsByClassName("review-question-button")[1],
+    document.getElementsByClassName("review-question-button")[2],
+    document.getElementsByClassName("review-question-button")[3],
+    document.getElementsByClassName("review-question-button")[4],
+    document.getElementsByClassName("review-question-button")[5],
+    document.getElementsByClassName("review-question-button")[6],
+    document.getElementsByClassName("review-question-button")[7],
+    document.getElementsByClassName("review-question-button")[8],
+    document.getElementsByClassName("review-question-button")[9]
+]
+
+backToQuestionButtons.forEach((button, index) => {
+    button.addEventListener("click", function(){
+        question = index + 1;
+        localStorage.setItem("question", question); 
+        window.location.href = "quizSpace.html";
+    })
+});
