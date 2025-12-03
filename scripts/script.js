@@ -239,7 +239,7 @@ else if ( localStorage.subjects == "Basic Science")
         }
     ]
 }
-else 
+else if (localStorage.subjects == "Maths")
 {
     document.getElementById("subject").innerHTML = "Mathematics"; // Changes the subect space to the chosen subect
 
@@ -355,6 +355,12 @@ else
         }
     ]
 }
+else 
+{
+    alert("Unauthorised access detected. Redirecting to start....");
+    window.location.href = "index.html";
+}
+
                 
 const questionButtons = [ // Array that stores the html location of each number button on the navigation bar.
     document.getElementsByClassName("option-number")[option_numberStartingIndex + 1], // Question 1 button
@@ -557,7 +563,7 @@ optionButtons.forEach((buttonOption,index) => { // Adds the event listener of cl
     })
 });
 
-//Scoring and next page 
+// Deals with the pop up to confirm submission willingness 
 document.getElementById("question-nav-button").addEventListener("click", function () // Waits for submit button to be clicked 
 {
     let modal = document.getElementById("submit-modal");
