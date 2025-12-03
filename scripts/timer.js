@@ -22,6 +22,7 @@ function countdown () {
         clearInterval(intervalId);
 
         document.getElementById("question-nav-button").click();
+        document.getElementById("confirm-submit").click();
     }
 }
 
