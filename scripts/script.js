@@ -609,8 +609,7 @@ document.getElementById("confirm-submit").addEventListener("click", function () 
             totalUnanswered ++; // And increase the number of unanswered questions by 1
         }
     }
-
-    localStorage.removeItem("userChoices");
+    
     localStorage.setItem("actualCorrect", String(actualCorrect)); // Saves the array of questions correctly answered as a string "actualCorrect" in local storage
     localStorage.setItem("actualUnanswered", String(actualUnanswered)); // Saves the array of questions unanswered as a string "actualUnanswered" in local storage
     localStorage.setItem("unanswered", totalUnanswered); // Saves total number of unanswered questions as "unanswered" in local storage 
