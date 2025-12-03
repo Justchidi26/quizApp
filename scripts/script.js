@@ -477,6 +477,12 @@ document.addEventListener("DOMContentLoaded", function(){
     }
     else
         change(1);
+
+    if (localStorage.submit)
+    {
+        document.getElementById("question-nav-button").click();
+        document.getElementById("confirm-submit").click();
+    }
 }
 );
 

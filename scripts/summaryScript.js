@@ -5,6 +5,7 @@ if(localStorage.length < 5)
 }
 
 localStorage.removeItem("userChoices");
+localStorage.removeItem("submit");
 
 // Retrieves values for number of correct answers and unattempted questions; and stores value for decided point per correct answer
 let totalCorrect = localStorage.getItem("score");

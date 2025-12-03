@@ -368,3 +368,23 @@ backToQuestionButtons.forEach((button, index) => {
         window.location.href = "quizSpace.html";
     })
 });
+
+// Deals with the pop up to confirm submission willingness 
+document.getElementById("question-nav-button").addEventListener("click", function () // Waits for submit button to be clicked 
+{
+    let modal = document.getElementById("submit-modal");
+    modal.classList.add("active");
+    document.body.classList.add("modal-open");
+});
+
+document.getElementById("cancel-submit").addEventListener("click", function () // Waits for cancel button to be clicked
+{
+    let modal = document.getElementById("submit-modal");
+    modal.classList.remove("active");
+    document.body.classList.remove("modal-open");
+});
+
+document.getElementById("confirm-submit").addEventListener("click", function (){
+    localStorage.setItem("submit", true);
+    window.location.href = "quizSpace.html";
+})
