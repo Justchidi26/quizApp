@@ -327,4 +327,9 @@ else
 for(let index in quizData)
 {
     document.getElementsByClassName("main-question")[index].innerHTML = quizData[index].question;
+
+    document.getElementsByClassName("options")[index].getElementsByClassName("option-text")[0].innerHTML = "<h3>" + quizData[index].option.A + "</h3>"
+    document.getElementsByClassName("options")[index].getElementsByClassName("option-text")[1].innerHTML = "<h3>" + quizData[index].option.B + "</h3>"
+    document.getElementsByClassName("options")[index].getElementsByClassName("option-text")[2].innerHTML = "<h3>" + quizData[index].option.C + "</h3>"
+    document.getElementsByClassName("options")[index].getElementsByClassName("option-text")[3].innerHTML = "<h3>" + quizData[index].option.D + "</h3>"
 }
