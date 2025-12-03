@@ -1,4 +1,4 @@
-if (localStorage.length < 5)
+if (localStorage.length < 2)
 {
     alert("Unauthorised access detected. Redirecting to start....");
     window.location.href = "index.html";
