@@ -1,9 +1,3 @@
-if (localStorage.length < 2)
-{
-    alert("Unauthorised access detected. Redirecting to start....");
-    window.location.href = "index.html";
-}
-
 let quizData = []; //Stores question,option set for each subect.
 let optionChoices = []; // stores user's answers
 
@@ -218,7 +212,7 @@ else if ( localStorage.subjects == "Basic Science")
         }
     ]
 }
-else
+else if ( localStorage.subjects == "Maths")
 {
     quizData = [ // An array of objects that have the properties : question, option, correctAnswer for each question number
         {
@@ -322,8 +316,15 @@ else
         }
     ]
 }
+else 
+{
+    alert("Unauthorised access detected. Redirecting to start....");
+    window.location.href = "index.html";
+}
 
-optionChoices = localStorage.getItem("userChoices").split(",");
+if (localStorage.userChoices){
+    optionChoices = localStorage.getItem("userChoices").split(",");
+}
 
 // Function that puts the correct info per box in summary page 
 for(let index in quizData)
