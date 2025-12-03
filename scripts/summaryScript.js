@@ -1,9 +1,10 @@
-if(localStorage.length !== 5)
+if(localStorage.length < 5)
 {
     alert("Unauthorised access detected. Redirecting to start....");
     window.location.href = "index.html";
 }
 
+localStorage.removeItem("userChoices");
 
 // Retrieves values for number of correct answers and unattempted questions; and stores value for decided point per correct answer
 let totalCorrect = localStorage.getItem("score");

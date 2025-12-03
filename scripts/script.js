@@ -459,7 +459,16 @@ function change(questionNumber){
 
 // Loads the first question automatically at start 
 document.addEventListener("DOMContentLoaded", function(){
-    change(1);   
+    if (localStorage.userChoices !== undefined)
+    {
+        optionChoices = localStorage.getItem("userChoices").split(",");
+        for (let button in questionButtons)
+        {
+            if(optionChoices[button])
+                questionButtons[button].classList.add("answered");
+        }
+    }
+    change(1);
 }
 );
 
@@ -560,6 +569,7 @@ optionButtons.forEach((buttonOption,index) => { // Adds the event listener of cl
                 }
             }
         }
+        localStorage.setItem("userChoices", String(optionChoices));
     })
 });
 
@@ -593,13 +603,14 @@ document.getElementById("confirm-submit").addEventListener("click", function () 
             totalCorrect ++; // And increase the number of correctly answered questions by 1
             
         }
-        else if (optionChoices[answer] === undefined) // If option choice for that number doesn't exist (undefined)
+        else if (optionChoices[answer] === undefined || optionChoices[answer] == "") // If option choice for that number doesn't exist (undefined)
         {
             actualUnanswered[totalUnanswered] = questionNumber; // Stores option number in array for unanswered question 
             totalUnanswered ++; // And increase the number of unanswered questions by 1
         }
     }
 
+    localStorage.removeItem("userChoices");
     localStorage.setItem("actualCorrect", String(actualCorrect)); // Saves the array of questions correctly answered as a string "actualCorrect" in local storage
     localStorage.setItem("actualUnanswered", String(actualUnanswered)); // Saves the array of questions unanswered as a string "actualUnanswered" in local storage
     localStorage.setItem("unanswered", totalUnanswered); // Saves total number of unanswered questions as "unanswered" in local storage 
