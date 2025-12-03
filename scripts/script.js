@@ -483,6 +483,9 @@ document.addEventListener("DOMContentLoaded", function(){
         document.getElementById("question-nav-button").click();
         document.getElementById("confirm-submit").click();
     }
+
+    if(localStorage.time)
+        time = localStorage.time;
 }
 );
 
@@ -499,6 +502,8 @@ questionButtons.forEach((button,index) => { // Adds the event listener of click 
     }
 
     change(index + 1); // Changes to that particular number's question set 
+
+    localStorage.setItem("time",time);
 })
 });
 
@@ -519,6 +524,8 @@ previousButton.addEventListener("click", function(){ // Waits for the click of t
         if (button != 0)
             previousQuestion(questionButtons[button], button); // Previous button function works as long as the current question isn't Question 1
     }
+
+    localStorage.setItem("time",time);
 })
 
 // Movement by Next
@@ -548,6 +555,8 @@ nextButton.addEventListener("click", function(){ // Waits for the click of the b
             }
         }
     }
+
+    localStorage.setItem("time",time);
 })
 
 // Storing user's choices
@@ -602,6 +611,7 @@ document.getElementById("cancel-submit").addEventListener("click", function () /
 });
 
 document.getElementById("question-review-button").addEventListener("click", function(){
+    localStorage.setItem("time",time);
     window.location.href = "review.html";
 })
 
