@@ -483,9 +483,6 @@ document.addEventListener("DOMContentLoaded", function(){
         document.getElementById("question-nav-button").click();
         document.getElementById("confirm-submit").click();
     }
-
-    if(localStorage.time)
-        time = localStorage.time;
 }
 );
 

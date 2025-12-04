@@ -1,6 +1,11 @@
 let timer = document.getElementById("timer"); // Space for the timer in quizSpace.html
 
-let time = 300; // 5 minutes
+let time;
+
+ if(localStorage.time)
+        time = localStorage.time;
+else
+        time = 300; // 5 minutes
 
 // Timer function
 function countdown () {
@@ -28,4 +33,4 @@ function countdown () {
 
 // Actual timer 
 const intervalId = setInterval(countdown, 1000); // Every 1 second the function above repeats
-// 1000 milliseconds = 1 second.
+// 1000 milliseconds = 1 second
