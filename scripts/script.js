@@ -239,7 +239,7 @@ else if ( localStorage.subjects == "Basic Science")
         }
     ]
 }
-else 
+else if (localStorage.subjects == "Maths")
 {
     document.getElementById("subject").innerHTML = "Mathematics"; // Changes the subect space to the chosen subect
 
@@ -355,6 +355,12 @@ else
         }
     ]
 }
+else 
+{
+    alert("Unauthorised access detected. Redirecting to start....");
+    window.location.href = "index.html";
+}
+
                 
 const questionButtons = [ // Array that stores the html location of each number button on the navigation bar.
     document.getElementsByClassName("option-number")[option_numberStartingIndex + 1], // Question 1 button
@@ -453,10 +459,35 @@ function change(questionNumber){
 
 // Loads the first question automatically at start 
 document.addEventListener("DOMContentLoaded", function(){
-    change(1);   
+    if (localStorage.userChoices)
+    {
+        optionChoices = localStorage.getItem("userChoices").split(",");
+        for (let button in questionButtons)
+        {
+            if(optionChoices[button])
+                questionButtons[button].classList.add("answered");
+        }
+    }
+
+    if (localStorage.question)
+    {
+        change(localStorage.question);
+        questionButtons[localStorage.question - 1].click();
+        localStorage.removeItem("question")
+    }
+    else
+        change(1);
+
+    if (localStorage.submit)
+    {
+        document.getElementById("question-nav-button").click();
+        document.getElementById("confirm-submit").click();
+    }
+
+    if(localStorage.time)
+        time = localStorage.time;
 }
 );
-
 
 // Navigation by clicking question number buttons
 questionButtons.forEach((button,index) => { // Adds the event listener of click for each button in the question Buttons array 
@@ -471,6 +502,8 @@ questionButtons.forEach((button,index) => { // Adds the event listener of click 
     }
 
     change(index + 1); // Changes to that particular number's question set 
+
+    localStorage.setItem("time",time);
 })
 });
 
@@ -491,6 +524,8 @@ previousButton.addEventListener("click", function(){ // Waits for the click of t
         if (button != 0)
             previousQuestion(questionButtons[button], button); // Previous button function works as long as the current question isn't Question 1
     }
+
+    localStorage.setItem("time",time);
 })
 
 // Movement by Next
@@ -520,6 +555,8 @@ nextButton.addEventListener("click", function(){ // Waits for the click of the b
             }
         }
     }
+
+    localStorage.setItem("time",time);
 })
 
 // Storing user's choices
@@ -554,10 +591,11 @@ optionButtons.forEach((buttonOption,index) => { // Adds the event listener of cl
                 }
             }
         }
+        localStorage.setItem("userChoices", String(optionChoices));
     })
 });
 
-//Scoring and next page 
+// Deals with the pop up to confirm submission willingness 
 document.getElementById("question-nav-button").addEventListener("click", function () // Waits for submit button to be clicked 
 {
     let modal = document.getElementById("submit-modal");
@@ -571,6 +609,11 @@ document.getElementById("cancel-submit").addEventListener("click", function () /
     modal.classList.remove("active");
     document.body.classList.remove("modal-open");
 });
+
+document.getElementById("question-review-button").addEventListener("click", function(){
+    localStorage.setItem("time",time);
+    window.location.href = "review.html";
+})
 
 document.getElementById("confirm-submit").addEventListener("click", function () // Waits for submit button to be clicked 
 {
@@ -587,7 +630,7 @@ document.getElementById("confirm-submit").addEventListener("click", function () 
             totalCorrect ++; // And increase the number of correctly answered questions by 1
             
         }
-        else if (optionChoices[answer] === undefined) // If option choice for that number doesn't exist (undefined)
+        else if (optionChoices[answer] === undefined || optionChoices[answer] == "") // If option choice for that number doesn't exist (undefined)
         {
             actualUnanswered[totalUnanswered] = questionNumber; // Stores option number in array for unanswered question 
             totalUnanswered ++; // And increase the number of unanswered questions by 1
