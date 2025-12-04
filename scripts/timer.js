@@ -34,3 +34,26 @@ function countdown () {
 // Actual timer 
 const intervalId = setInterval(countdown, 1000); // Every 1 second the function above repeats
 // 1000 milliseconds = 1 second
+
+function debounce (func, delay){
+    let timerID;
+
+    return function(...args){
+        if (timerID) {
+            clearTimeout(timerID);
+        }
+        
+        timerID = setTimeout(() => {
+        func.apply(this, args);}, delay);
+    }
+}
+
+const moveToNext = debounce((e) => {
+            nextButton.click();
+        }, 2500);
+
+optionButtons.forEach((button) => {
+    button.addEventListener("click", function(){
+        moveToNext();
+    }) 
+})
