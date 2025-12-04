@@ -459,26 +459,26 @@ function change(questionNumber){
 
 // Loads the first question automatically at start 
 document.addEventListener("DOMContentLoaded", function(){
-    if (localStorage.userChoices)
+    if (localStorage.userChoices) // Checks if the variable exists
     {
-        optionChoices = localStorage.getItem("userChoices").split(",");
+        optionChoices = localStorage.getItem("userChoices").split(","); // Turns it back into an array and feeds it into the variable so that it uses it for the page
         for (let button in questionButtons)
         {
-            if(optionChoices[button])
-                questionButtons[button].classList.add("answered");
+            if(optionChoices[button]) //Checks through the questions if they've been answered
+                questionButtons[button].classList.add("answered"); // Hghlights all the numbers that were answered before the refresh
         }
     }
 
-    if (localStorage.question)
+    if (localStorage.question) // Checks if the variable exists
     {
-        change(localStorage.question);
-        questionButtons[localStorage.question - 1].click();
-        localStorage.removeItem("question")
+        change(localStorage.question); // Goes to the question specified by the user in the review page
+        questionButtons[localStorage.question - 1].click(); 
+        localStorage.removeItem("question") // Removes it from local storage to avoid problems with storage later on
     }
-    else
-        change(1);
+    else // If question doesn't exist meaning user is ust starting the quiz and hasn't come from the review page
+        change(1);  // Start from no 1
 
-    if (localStorage.submit)
+    if (localStorage.submit) // If submit button was clicked on the review page it submits 
     {
         document.getElementById("question-nav-button").click();
         document.getElementById("confirm-submit").click();
@@ -500,7 +500,7 @@ questionButtons.forEach((button,index) => { // Adds the event listener of click 
 
     change(index + 1); // Changes to that particular number's question set 
 
-    localStorage.setItem("time",time);
+    localStorage.setItem("time",time); // stores time at that point
 })
 });
 
@@ -522,7 +522,7 @@ previousButton.addEventListener("click", function(){ // Waits for the click of t
             previousQuestion(questionButtons[button], button); // Previous button function works as long as the current question isn't Question 1
     }
 
-    localStorage.setItem("time",time);
+    localStorage.setItem("time",time); // stores time at that point
 })
 
 // Movement by Next
@@ -553,7 +553,7 @@ nextButton.addEventListener("click", function(){ // Waits for the click of the b
         }
     }
 
-    localStorage.setItem("time",time);
+    localStorage.setItem("time",time);  // stores time at that point
 })
 
 // Storing user's choices
@@ -596,20 +596,20 @@ optionButtons.forEach((buttonOption,index) => { // Adds the event listener of cl
 document.getElementById("question-nav-button").addEventListener("click", function () // Waits for submit button to be clicked 
 {
     let modal = document.getElementById("submit-modal");
-    modal.classList.add("active");
-    document.body.classList.add("modal-open");
+    modal.classList.add("active"); // When clicked the Confirmation dialogue opens up
+    document.body.classList.add("modal-open"); 
 });
 
 document.getElementById("cancel-submit").addEventListener("click", function () // Waits for cancel button to be clicked
 {
     let modal = document.getElementById("submit-modal");
-    modal.classList.remove("active");
+    modal.classList.remove("active");  // removes the confirmation dialogue
     document.body.classList.remove("modal-open");
 });
 
-document.getElementById("question-review-button").addEventListener("click", function(){
-    localStorage.setItem("time",time);
-    window.location.href = "review.html";
+document.getElementById("question-review-button").addEventListener("click", function(){ // Waits for the review button to be clicked 
+    localStorage.setItem("time",time); // Saves the time at that point
+    window.location.href = "review.html"; // Goes to the page
 })
 
 document.getElementById("confirm-submit").addEventListener("click", function () // Waits for submit button to be clicked 
