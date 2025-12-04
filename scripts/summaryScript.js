@@ -1,3 +1,13 @@
+if(localStorage.length < 5)
+{
+    alert("Unauthorised access detected. Redirecting to start....");
+    window.location.href = "index.html";
+}
+
+localStorage.removeItem("userChoices");
+localStorage.removeItem("submit");
+localStorage.removeItem("time");
+
 // Retrieves values for number of correct answers and unattempted questions; and stores value for decided point per correct answer
 let totalCorrect = localStorage.getItem("score");
 let unattempted = localStorage.getItem("unanswered");
@@ -72,7 +82,7 @@ else if ( localStorage.subjects == "Basic Science")
         "C : Amphibian"
     ]
 }
-else 
+else if (localStorage.subjects == "Maths")
 {
     questions = [
         "What is 12 + 8?",
