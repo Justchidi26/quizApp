@@ -364,9 +364,15 @@ backToQuestionButtons = [
 backToQuestionButtons.forEach((button, index) => {
     button.addEventListener("click", function(){
         question = index + 1;
-        localStorage.setItem("question", question); 
+        localStorage.setItem("question", question);
+        localStorage.setItem("time",time); 
         window.location.href = "quizSpace.html";
-    })
+    })   
+});
+
+document.getElementById("back").addEventListener("click", function(){
+  localStorage.setItem("time",time);
+  window.location.href = "quizSpace.html";
 });
 
 // Deals with the pop up to confirm submission willingness 
