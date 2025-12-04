@@ -1,7 +1,7 @@
 let quizData = []; //Stores question,option set for each subect.
 let optionChoices = []; // stores user's answers
 
-
+// Loads question set based on subject chosen
 if ( localStorage.subjects == "English")
 {
     quizData = [ // An array of objects that have the properties : question, option, correctAnswer for each question number 
@@ -316,30 +316,31 @@ else if ( localStorage.subjects == "Maths")
         }
     ]
 }
-else 
+else // If not found rejects user from moving forward
 {
     alert("Unauthorised access detected. Redirecting to start....");
     window.location.href = "index.html";
 }
 
-if (localStorage.userChoices){
-    optionChoices = localStorage.getItem("userChoices").split(",");
+if (localStorage.userChoices){ // If the variable exists
+    optionChoices = localStorage.getItem("userChoices").split(","); // Turns it back to an array
 }
 
-// Function that puts the correct info per box in summary page 
+// Function that puts the correct info per box on the review page 
 for(let index in quizData)
 {
-    document.getElementsByClassName("main-question")[index].innerHTML = quizData[index].question;
+    document.getElementsByClassName("main-question")[index].innerHTML = quizData[index].question;  // For the question space
 
-    questionBox = document.getElementsByClassName("options")[index];
+    questionBox = document.getElementsByClassName("options")[index]; 
 
-    questionBox.getElementsByClassName("option-text")[0].innerHTML = "<h3>" + quizData[index].option.A + "</h3>"
-    questionBox.getElementsByClassName("option-text")[1].innerHTML = "<h3>" + quizData[index].option.B + "</h3>"
-    questionBox.getElementsByClassName("option-text")[2].innerHTML = "<h3>" + quizData[index].option.C + "</h3>"
-    questionBox.getElementsByClassName("option-text")[3].innerHTML = "<h3>" + quizData[index].option.D + "</h3>"
+    questionBox.getElementsByClassName("option-text")[0].innerHTML = "<h3>" + quizData[index].option.A + "</h3>" // Option A
+    questionBox.getElementsByClassName("option-text")[1].innerHTML = "<h3>" + quizData[index].option.B + "</h3>" // Option B
+    questionBox.getElementsByClassName("option-text")[2].innerHTML = "<h3>" + quizData[index].option.C + "</h3>" // Option C
+    questionBox.getElementsByClassName("option-text")[3].innerHTML = "<h3>" + quizData[index].option.D + "</h3>" // Option D
 
+    // Selects the user's inputs for each question
     if (optionChoices[index] === "A")
-        questionBox.getElementsByClassName("option-box")[0].classList.add("selected");
+        questionBox.getElementsByClassName("option-box")[0].classList.add("selected"); 
     else if (optionChoices[index] === "B")
         questionBox.getElementsByClassName("option-box")[1].classList.add("selected");
     else if (optionChoices[index] === "C")
@@ -349,42 +350,48 @@ for(let index in quizData)
 }
 
 backToQuestionButtons = [
-    document.getElementsByClassName("review-question-button")[0],
-    document.getElementsByClassName("review-question-button")[1],
-    document.getElementsByClassName("review-question-button")[2],
-    document.getElementsByClassName("review-question-button")[3],
-    document.getElementsByClassName("review-question-button")[4],
-    document.getElementsByClassName("review-question-button")[5],
-    document.getElementsByClassName("review-question-button")[6],
-    document.getElementsByClassName("review-question-button")[7],
-    document.getElementsByClassName("review-question-button")[8],
-    document.getElementsByClassName("review-question-button")[9]
+    document.getElementsByClassName("review-question-button")[0], // goes back to no 1
+    document.getElementsByClassName("review-question-button")[1], // goes back to no 2
+    document.getElementsByClassName("review-question-button")[2], // goes back to no 3
+    document.getElementsByClassName("review-question-button")[3], // goes back to no 4
+    document.getElementsByClassName("review-question-button")[4], // goes back to no 5
+    document.getElementsByClassName("review-question-button")[5], // goes back to no 6
+    document.getElementsByClassName("review-question-button")[6], // goes back to no 7
+    document.getElementsByClassName("review-question-button")[7], // goes back to no 8
+    document.getElementsByClassName("review-question-button")[8], // goes back to no 9
+    document.getElementsByClassName("review-question-button")[9] // goes back to no 10
 ]
 
-backToQuestionButtons.forEach((button, index) => {
-    button.addEventListener("click", function(){
-        question = index + 1;
-        localStorage.setItem("question", question); 
-        window.location.href = "quizSpace.html";
-    })
+backToQuestionButtons.forEach((button, index) => { // for each button
+    button.addEventListener("click", function(){ // Waits for a click
+        question = index + 1; 
+        localStorage.setItem("question", question); // Saves the question number to be used in the main quiz page
+        localStorage.setItem("time",time);  // Saves the time at that point
+        window.location.href = "quizSpace.html"; // Goes to the main quiz page
+    })   
+});
+
+document.getElementById("back").addEventListener("click", function(){ // waits for back button
+  localStorage.setItem("time",time); // Saves the time at that point
+  window.location.href = "quizSpace.html"; // Goes to the main quiz page
 });
 
 // Deals with the pop up to confirm submission willingness 
 document.getElementById("question-nav-button").addEventListener("click", function () // Waits for submit button to be clicked 
 {
     let modal = document.getElementById("submit-modal");
-    modal.classList.add("active");
+    modal.classList.add("active"); // opens up confirmation dialogue
     document.body.classList.add("modal-open");
 });
 
 document.getElementById("cancel-submit").addEventListener("click", function () // Waits for cancel button to be clicked
 {
     let modal = document.getElementById("submit-modal");
-    modal.classList.remove("active");
+    modal.classList.remove("active"); // closes confirmation dialogue
     document.body.classList.remove("modal-open");
 });
 
 document.getElementById("confirm-submit").addEventListener("click", function (){
-    localStorage.setItem("submit", true);
-    window.location.href = "quizSpace.html";
+    localStorage.setItem("submit", true); // tells main page that user has submitted
+    window.location.href = "quizSpace.html"; // goes to main page
 })

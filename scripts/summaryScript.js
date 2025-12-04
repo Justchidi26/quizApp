@@ -1,19 +1,20 @@
-if(localStorage.length < 5)
+if(localStorage.length < 5) // Makes sure that the right amount of variables needed for this page to work is available
 {
-    alert("Unauthorised access detected. Redirecting to start....");
-    window.location.href = "index.html";
+    alert("Unauthorised access detected. Redirecting to start...."); // If not the user is obstructed from moving forward
+    window.location.href = "index.html"; 
 }
 
-localStorage.removeItem("userChoices");
+// Deletes unnecessary variables and anything that might disturb page flow
+localStorage.removeItem("userChoices"); 
 localStorage.removeItem("submit");
 localStorage.removeItem("time");
 
-// Retrieves values for number of correct answers and unattempted questions; and stores value for decided point per correct answer
-let totalCorrect = localStorage.getItem("score");
-let unattempted = localStorage.getItem("unanswered");
-let points = 1;
+// Retrieves values for: 
+let totalCorrect = localStorage.getItem("score"); // number of correct answers
+let unattempted = localStorage.getItem("unanswered");// unattempted questions; 
+let points = 1;// decided point(s) per correct answer
 
-// Fills the side table of the summary page
+// Fills the side table of the summary page with information from local storage
 document.getElementById("attempted").innerHTML = 10 - unattempted;
 document.getElementById("unanswered").innerHTML = unattempted;
 document.getElementById("correct").innerHTML = totalCorrect;
@@ -25,7 +26,7 @@ document.getElementById("total").innerHTML = points * totalCorrect;
 let correctAnswers;
 let questions;
 
-//Gives the above arrays values based on the subject 
+//Gives the above arrays values based on the subject chosen
 if ( localStorage.subjects == "English")
 {
     questions = [
@@ -112,7 +113,7 @@ else if (localStorage.subjects == "Maths")
     ]
 }
 
-// Retrieves the array for correctly answred questions and unattempted questions from local storage
+// Retrieves the array for correctly answred questions and unattempted questions from local storage and turns them back to arrays.
 let actualCorrect = localStorage.getItem("actualCorrect").split(",");
 let actualUnanswered = localStorage.getItem("actualUnanswered").split(",");
 
@@ -124,32 +125,32 @@ function corrections (questionNumber)
 {
     let index = questionNumber-1;
 
-    document.getElementsByClassName("question")[index].innerHTML = questions[index];
-    document.getElementsByClassName("answer")[index].innerHTML = correctAnswers[index];
-    document.getElementsByClassName("mark")[index].innerHTML = points;
+    document.getElementsByClassName("question")[index].innerHTML = questions[index]; // For question
+    document.getElementsByClassName("answer")[index].innerHTML = correctAnswers[index]; // For correct answer
+    document.getElementsByClassName("mark")[index].innerHTML = points; // For point
 
-    
+    // Puts the correct sign for each question 
     if (questionNumber == actualCorrect[j])
     {
-        document.getElementsByClassName("question-summary-indicator")[index].innerHTML = "&check;";
+        document.getElementsByClassName("question-summary-indicator")[index].innerHTML = "&check;"; // If correct
         j++;
     }
     else if (questionNumber == actualUnanswered[k])
     {
-        document.getElementsByClassName("question-summary-indicator")[index].innerHTML = "&propto;";
+        document.getElementsByClassName("question-summary-indicator")[index].innerHTML = "&propto;"; // If unanswered
         k++;
     }
     else
     {
-        document.getElementsByClassName("question-summary-indicator")[index].innerHTML = "&times;";
+        document.getElementsByClassName("question-summary-indicator")[index].innerHTML = "&times;"; // If wrong
     }
 
 }
 
 // Using the function for all questions 
-for (let i = 1; i <= 10; i++)
+for (let question in questions)
 {
-    corrections(i);
+    corrections(Number(question) + 1);
 }
 
     
