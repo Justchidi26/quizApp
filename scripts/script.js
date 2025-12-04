@@ -560,6 +560,20 @@ optionButtons.forEach((buttonOption,index) => { // Adds the event listener of cl
 //Scoring and next page 
 document.getElementById("question-nav-button").addEventListener("click", function () // Waits for submit button to be clicked 
 {
+    let modal = document.getElementById("submit-modal");
+    modal.classList.add("active");
+    document.body.classList.add("modal-open");
+});
+
+document.getElementById("cancel-submit").addEventListener("click", function () // Waits for cancel button to be clicked
+{
+    let modal = document.getElementById("submit-modal");
+    modal.classList.remove("active");
+    document.body.classList.remove("modal-open");
+});
+
+document.getElementById("confirm-submit").addEventListener("click", function () // Waits for submit button to be clicked 
+{
     let actualCorrect = []; // Array to save the numbers of Questions answered correctly
     let actualUnanswered = []; // Array to save the numbers of Questions not answered at all
 
